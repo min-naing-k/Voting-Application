@@ -16,6 +16,8 @@
 
   <!-- Scripts -->
   <script src="{{ asset('js/app.js') }}" defer></script>
+
+  {{ $style ?? null }}
 </head>
 
 <body class="font-sans text-gray-900 bg-gray-background text-sm">
