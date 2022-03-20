@@ -1,4 +1,4 @@
-@props(['align' => 'right', 'width' => '48', 'contentClasses' => 'py-1 bg-white'])
+@props(['align' => 'right', 'width' => '48', 'contentClasses' => ''])
 
 @php
 switch ($align) {
@@ -33,13 +33,9 @@ switch ($width) {
     x-transition:leave="transition ease-in duration-150"
     x-transition:leave-start="transform opacity-100 scale-100"
     x-transition:leave-end="transform opacity-0 scale-50"
-    class="absolute z-50 mt-2 {{ $width }} rounded-xl shadow-dialog overflow-hidden {{ $alignmentClasses }} {{ $contentClasses }}"
+    class="absolute z-50 mt-2 {{ $width }} text-left font-semibold text-sm bg-white shadow-dialog rounded-lg px-4 py-6 {{ $alignmentClasses }} {{ $contentClasses }}"
     style="display: none;"
-    @click="open = false"
     @keydown.escape.window="open = false">
-    {{-- <div class="rounded-xl overflow-hidden {{ $contentClasses }}">
-      {{ $content }}
-    </div> --}}
     {{ $content }}
   </div>
 </div>

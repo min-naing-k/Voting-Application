@@ -43,17 +43,22 @@
               text-center py-2 px-4">
               Open
             </div>
-            <button class="relative bg-gray-100 hover:bg-gray-200 rounded-lg flex items-center h-7 transition duration-150 ease-in py-2 
-              px-3">
-              <svg xmlns="http://www.w3.org/2000/svg" class="w-5 text-gray-400" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
-                <path stroke-linecap="round" stroke-linejoin="round" d="M5 12h.01M12 12h.01M19 12h.01M6 12a1 1 0 11-2 0 1 1 0 012 0zm7 0a1 1 0 11-2 0 1 1 0 012 0zm7 0a1 1 0 11-2 0 1 1 0 012 0z" />
-              </svg>
+            <x-dropdown align="left">
+              <x-slot name="trigger">
+                <button
+                  class="relative bg-gray-100 hover:bg-gray-200 rounded-lg flex items-center h-7 
+                  transition duration-150 ease-in py-2 px-3">
+                  <svg xmlns="http://www.w3.org/2000/svg" class="w-5 text-gray-400" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M5 12h.01M12 12h.01M19 12h.01M6 12a1 1 0 11-2 0 1 1 0 012 0zm7 0a1 1 0 11-2 0 1 1 0 012 0zm7 0a1 1 0 11-2 0 1 1 0 012 0z" />
+                  </svg>
+                </button>
+              </x-slot>
 
-              <ul class="hidden absolute -left-7.5 top-6 w-44 font-semibold bg-white shadow-dialog rounded-xl py-1 text-left ml-8">
-                <li><a href="#" class="hover:bg-gray-100 px-5 py-3 block transition duration-150 ease-in">Mark as spam</a></li>
-                <li><a href="#" class="hover:bg-gray-100 px-5 py-3 block transition duration-150 ease-in">Mark as delete</a></li>
-              </ul>
-            </button>
+              <x-slot name="content">
+                <x-dropdown-link href="#">Mark as spam</x-dropdown-link>
+                <x-dropdown-link href="#">Mark as delete</x-dropdown-link>
+              </x-slot>
+            </x-dropdown>
           </div>
         </div>
       </div>
@@ -62,13 +67,17 @@
 
   <div class="buttons-container flex items-center justify-between mt-6">
     <div class="flex items-center space-x-3 ml-6">
-      <div class="relative">
-        <button type="button"
-          class="flex items-center justify-center w-32 h-11 text-xs bg-blue text-white
+      <x-dialog
+        align="left"
+        width="w-104">
+        <x-slot name="trigger">
+          <button type="button"
+            class="flex items-center justify-center w-32 h-11 text-xs bg-blue text-white
               font-semibold rounded-md hover:bg-blue-hover transition duration-150 ease-in">
-          Reply
-        </button>
-        <div class="absolute z-10 w-104 text-left font-semibold text-sm bg-white shadow-dialog rounded-lg mt-2 px-4 py-6">
+            Reply
+          </button>
+        </x-slot>
+        <x-slot name="content">
           <form action="#" method="POST" class="space-y-4">
             <div>
               <textarea name="post_comment" id="post_comment" cols="30" rows="4"
@@ -77,12 +86,12 @@
                 placeholder="Go ahead, don't be shy. Share your thoughts..."></textarea>
             </div>
             <div class="flex items-center space-x-3">
-              <button type="button"
+              <button type="button" @click="open = false"
                 class="flex items-center justify-center w-1/2 h-11 text-xs bg-blue text-white
               font-semibold rounded-md hover:bg-blue-hover transition duration-150 ease-in">
                 Post Comment
               </button>
-              <button type="button"
+              <button type="button" @click="open = false"
                 class="flex items-center justify-center w-32 h-11 text-xs bg-gray-200 
             font-semibold rounded-md border border-gray-200 hover:border-gray-300 transition duration-150 ease-in">
                 <svg class="text-gray-600 w-4 transform -rotate-45" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
@@ -92,18 +101,22 @@
               </button>
             </div>
           </form>
-        </div>
-      </div>
-      <div class="relative">
-        <button type="button"
-          class="flex items-center justify-center w-36 h-11 text-xs bg-gray-200
+        </x-slot>
+      </x-dialog>
+      <x-dialog
+        align="left"
+        width="w-76">
+        <x-slot name="trigger">
+          <button type="button"
+            class="flex items-center justify-center w-36 h-11 text-xs bg-gray-200
               font-semibold rounded-md border border-gray-200 hover:border-gray-300 transition duration-150 ease-in">
-          <span class="ml-1">Set Status</span>
-          <svg class="w-4 ml-2" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
-            <path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7" />
-          </svg>
-        </button>
-        <div class="absolute z-20 w-76 text-left font-semibold text-sm bg-white shadow-dialog rounded-lg mt-2 px-4 py-6">
+            <span class="ml-1">Set Status</span>
+            <svg class="w-4 ml-2" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7" />
+            </svg>
+          </button>
+        </x-slot>
+        <x-slot name="content">
           <form action="#" method="POST" class="space-y-4">
             <div class="space-y-2">
               <div>
@@ -148,7 +161,7 @@
                 placeholder="Add an update comment (optional)"></textarea>
             </div>
             <div class="flex items-center space-x-3">
-              <button type="button"
+              <button type="button" @click="open = false"
                 class="flex items-center justify-center w-1/2 h-11 text-xs bg-gray-200 
             font-semibold rounded-md border border-gray-200 hover:border-gray-300 transition duration-150 ease-in">
                 <svg class="text-gray-600 w-4 transform -rotate-45" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
@@ -156,7 +169,7 @@
                 </svg>
                 <span class="ml-1">Attach</span>
               </button>
-              <button type="button"
+              <button type="button" @click="open = false"
                 class="flex items-center justify-center w-1/2 h-11 text-xs bg-blue text-white 
             font-semibold rounded-md hover:bg-blue-hover transition duration-150 ease-in">
                 Submit
@@ -169,8 +182,8 @@
               </label>
             </div>
           </form>
-        </div>
-      </div>
+        </x-slot>
+      </x-dialog>
     </div>
     <div class="flex items-center space-x-3">
       <div class="bg-white text-center px-3 py-2 font-semibold rounded-lg shadow-sm">

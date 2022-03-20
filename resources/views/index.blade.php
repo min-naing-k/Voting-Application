@@ -70,17 +70,23 @@
               text-center py-2 px-4">
                 Open
               </div>
-              <button class="relative bg-gray-100 hover:bg-gray-200 rounded-lg flex items-center h-7 transition duration-150 ease-in py-2 
-              px-3">
-                <svg xmlns="http://www.w3.org/2000/svg" class="w-5 text-gray-400" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
-                  <path stroke-linecap="round" stroke-linejoin="round" d="M5 12h.01M12 12h.01M19 12h.01M6 12a1 1 0 11-2 0 1 1 0 012 0zm7 0a1 1 0 11-2 0 1 1 0 012 0zm7 0a1 1 0 11-2 0 1 1 0 012 0z" />
-                </svg>
+              <x-dropdown align="left">
+                <x-slot name="trigger">
+                  <button
+                    class="relative bg-gray-100 hover:bg-gray-200 rounded-lg flex items-center h-7 
+                    transition duration-150 ease-in py-2 px-3">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="w-5 text-gray-400" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                      <path stroke-linecap="round" stroke-linejoin="round"
+                        d="M5 12h.01M12 12h.01M19 12h.01M6 12a1 1 0 11-2 0 1 1 0 012 0zm7 0a1 1 0 11-2 0 1 1 0 012 0zm7 0a1 1 0 11-2 0 1 1 0 012 0z" />
+                    </svg>
+                  </button>
+                </x-slot>
 
-                <ul class="absolute -left-7.5 top-6 w-44 font-semibold bg-white shadow-dialog rounded-xl py-1 text-left ml-8">
-                  <li><a href="#" class="hover:bg-gray-100 px-5 py-3 block transition duration-150 ease-in">Mark as spam</a></li>
-                  <li><a href="#" class="hover:bg-gray-100 px-5 py-3 block transition duration-150 ease-in">Mark as delete</a></li>
-                </ul>
-              </button>
+                <x-slot name="content">
+                  <x-dropdown-link href="#">Mark as spam</x-dropdown-link>
+                  <x-dropdown-link href="#">Mark as delete</x-dropdown-link>
+                </x-slot>
+              </x-dropdown>
             </div>
           </div>
         </div>
@@ -314,17 +320,23 @@
               text-center py-2 px-4">
                 Considering
               </div>
-              <button class="relative bg-gray-100 hover:bg-gray-200 rounded-lg flex items-center h-7 transition duration-150 ease-in py-2 
-              px-3">
-                <svg xmlns="http://www.w3.org/2000/svg" class="w-5 text-gray-400" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
-                  <path stroke-linecap="round" stroke-linejoin="round" d="M5 12h.01M12 12h.01M19 12h.01M6 12a1 1 0 11-2 0 1 1 0 012 0zm7 0a1 1 0 11-2 0 1 1 0 012 0zm7 0a1 1 0 11-2 0 1 1 0 012 0z" />
-                </svg>
+              <x-dropdown align="left">
+                <x-slot name="trigger">
+                  <button
+                    class="relative bg-gray-100 hover:bg-gray-200 rounded-lg flex items-center h-7 
+                    transition duration-150 ease-in py-2 px-3">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="w-5 text-gray-400" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                      <path stroke-linecap="round" stroke-linejoin="round"
+                        d="M5 12h.01M12 12h.01M19 12h.01M6 12a1 1 0 11-2 0 1 1 0 012 0zm7 0a1 1 0 11-2 0 1 1 0 012 0zm7 0a1 1 0 11-2 0 1 1 0 012 0z" />
+                    </svg>
+                  </button>
+                </x-slot>
 
-                <ul class="absolute -left-7.5 top-6 w-44 font-semibold bg-white shadow-lg rounded-xl py-1 text-left ml-8">
-                  <li><a href="#" class="hover:bg-gray-100 px-5 py-3 block transition duration-150 ease-in">Mark as spam</a></li>
-                  <li><a href="#" class="hover:bg-gray-100 px-5 py-3 block transition duration-150 ease-in">Mark as delete</a></li>
-                </ul>
-              </button>
+                <x-slot name="content">
+                  <x-dropdown-link href="#">Mark as spam</x-dropdown-link>
+                  <x-dropdown-link href="#">Mark as delete</x-dropdown-link>
+                </x-slot>
+              </x-dropdown>
             </div>
           </div>
         </div>
