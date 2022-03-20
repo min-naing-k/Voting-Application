@@ -1,7 +1,7 @@
 <x-app-layout>
   <div class="flex items-center space-x-4">
     <div class="w-1/3">
-      <select name="category" id="category" class="w-full rounded-md shadow transition duration-100 ease-in border 
+      <select name="category" id="category" class="w-full rounded-md shadow transition duration-150 ease-in border 
       border-transparent foucs:border-blue">
         <option value="">All</option>
         <option value="category_one">Category One</option>
@@ -10,7 +10,7 @@
       </select>
     </div>
     <div class="w-1/3">
-      <select name="other_filters" id="other_filters" class="w-full rounded-md shadow transition duration-100 ease-in 
+      <select name="other_filters" id="other_filters" class="w-full rounded-md shadow transition duration-150 ease-in 
       border border-transparent foucs:border-blue">
         <option value="">Other Filter</option>
         <option value="other_filter_one">Other filter One</option>
@@ -21,7 +21,7 @@
     <div class="w-2/3 relative">
       <input type="search"
         class="w-full border border-transparent pl-8 py-2 pr-4 shadow rounded-md
-       placeholder:text-gray-900 focus:placeholder:text-gray-400 focus:border-blue transition duration-100 ease-in"
+       placeholder:text-gray-900 focus:placeholder:text-gray-400 focus:border-blue transition duration-150 ease-in"
         placeholder="Find an idea">
       <img src="{{ asset('images/search.png') }}" alt="search-icon" class="w-4 absolute top-1/2 left-2 -translate-y-1/2" />
     </div>
@@ -48,12 +48,14 @@
             <img src="https://source.unsplash.com/200x200/?face&crop=face&v=1" alt="" class="w-14 h-14 rounded-md">
           </a>
         </div>
-        <div class="mx-4 flex-1">
-          <h4 class="text-xl font-semibold">
-            <a href="#" class="hover:underline">A random title will go here</a>
-          </h4>
-          <div class="text-gray-600 mt-3 line-clamp-3">
-            Lorem ipsum dolor sit amet, consectetur adipisicing elit.
+        <div class="mx-4 flex flex-col justify-between flex-1">
+          <div>
+            <h4 class="text-xl font-semibold">
+              <a href="#" class="hover:underline">A random title will go here</a>
+            </h4>
+            <div class="text-gray-600 mt-3 line-clamp-3">
+              Lorem ipsum dolor sit amet, consectetur adipisicing elit.
+            </div>
           </div>
           <div class="flex items-center justify-between mt-6">
             <div class="flex items-center text-xs font-semibold space-x-2 text-gray-400">
