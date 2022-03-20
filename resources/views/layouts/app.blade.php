@@ -16,8 +16,6 @@
 
   <!-- Scripts -->
   <script src="{{ asset('js/app.js') }}" defer></script>
-
-  {{ $style ?? null }}
 </head>
 
 <body class="font-sans text-gray-900 bg-gray-background text-sm">
@@ -56,11 +54,57 @@
 
   <main class="container mx-auto flex p-4 max-w-custom">
     <div class="w-70 mr-5">
-      Form goes here Lorem ipsum dolor sit amet consectetur adipisicing elit. Sunt incidunt, doloremque natus eius, sed 
-      quas exercitationem hic accusantium molestias distinctio et earum est ad
-      possimus repellat culpa expedita odit quasi temporibus similique ullam, voluptates magni dolore. Error sed assumenda 
-      aliquam cumque, nulla alias voluptatibus aperiam, molestias id est molestiae
-      ullam?
+      <div class="bg-white border-2 rounded-lg mt-16 shadow"
+        style="border-image-source: linear-gradient(to bottom, rgba(50, 138, 241, 0.22), rgba(99, 123, 255, 0));
+              border-image-slice: 1;
+              background-image: linear-gradient(to bottom, #ffffff, #ffffff), linear-gradient(to bottom, rgba(50, 138, 241, 0.22), rgba(99, 123, 255, 0));
+              background-origin: border-box;
+              background-clip: content-box, border-box;">
+        <div class="text-center px-6 py-2 pt-6">
+          <h3 class="font-semibold text-base">Add an idea</h3>
+          <p class="text-xs mt-4">
+            Let us know what you would like and we'll take a look over!
+          </p>
+        </div>
+        <form action="#" method="POST" class="space-y-4 px-4 py-6">
+          <div>
+            <input type="text" class="text-sm w-full border border-gray-200 bg-gray-100 rounded-md placeholder:text-gray-900 px-4 py-2 focus:border-blue transition duration-100 ease-in"
+              placeholder="Your Idea" />
+          </div>
+
+          <div>
+            <select name="add_category" id="add_category" class="w-full bg-gray-100 text-sm px-4 py-2 rounded-md transition duration-100 ease-in border 
+            border-gray-200 foucs:border-blue">
+              <option value="">Choose Category</option>
+              <option value="category_one">Category One</option>
+              <option value="category_two">Category Two</option>
+              <option value="category_three">Category Three</option>
+            </select>
+          </div>
+
+          <div>
+            <textarea name="idea" id="idea" cols="30" rows="4"
+              class="text-sm w-full border border-gray-200 bg-gray-100 rounded-md placeholder:text-gray-900 px-4 py-2 focus:border-blue transition duration-100 ease-in"
+              placeholder="Descripe your idea..."></textarea>
+          </div>
+
+          <div class="flex items-center justify-between space-x-3">
+            <button type="button"
+              class="flex items-center justify-center w-1/2 h-11 text-xs bg-gray-200 
+            font-semibold rounded-md border border-gray-200 hover:border-gray-300 transition duration-150 ease-in">
+              <svg class="text-gray-600 w-4 transform -rotate-45" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M15.172 7l-6.586 6.586a2 2 0 102.828 2.828l6.414-6.586a4 4 0 00-5.656-5.656l-6.415 6.585a6 6 0 108.486 8.486L20.5 13" />
+              </svg>
+              <span class="ml-1">Attach</span>
+            </button>
+            <button type="button"
+              class="flex items-center justify-center w-1/2 h-11 text-xs bg-blue text-white 
+            font-semibold rounded-md hover:bg-blue-hover transition duration-150 ease-in">
+              Submit
+            </button>
+          </div>
+        </form>
+      </div>
     </div>
     <div class="w-175">
       <nav class="flex items-center justify-between text-xs">

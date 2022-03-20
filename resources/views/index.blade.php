@@ -1,13 +1,4 @@
 <x-app-layout>
-  <x-slot name="style">
-    <style>
-      .idea-container:last-of-type {
-        margin-bottom: 5rem !important;
-      }
-
-    </style>
-  </x-slot>
-
   <div class="flex items-center space-x-4">
     <div class="w-1/3">
       <select name="category" id="category" class="w-full rounded-md shadow transition duration-100 ease-in border 
@@ -51,22 +42,18 @@
           </button>
         </div>
       </div>
-      <div class="flex px-2 py-6">
-        <a href="#" class="flex-shrink-0">
-          <img src="https://source.unsplash.com/200x200/?face&crop=face&v=1" alt="" class="w-14 h-14 rounded-md">
-        </a>
-        <div class="mx-4">
+      <div class="flex flex-1 px-2 py-6">
+        <div class="flex-shrink-0">
+          <a href="#">
+            <img src="https://source.unsplash.com/200x200/?face&crop=face&v=1" alt="" class="w-14 h-14 rounded-md">
+          </a>
+        </div>
+        <div class="mx-4 flex-1">
           <h4 class="text-xl font-semibold">
             <a href="#" class="hover:underline">A random title will go here</a>
           </h4>
           <div class="text-gray-600 mt-3 line-clamp-3">
-            Lorem ipsum dolor sit amet, consectetur adipisicing elit. Doloremque sapiente atque enim perferendis voluptas
-            tempore, ratione laborum voluptates tenetur aliquam facilis omnis dolorem. Tenetur facilis sit quae et eaque,
-            ea necessitatibus consequuntur, nemo natus ad rem aliquam mollitia soluta optio, in rerum? Iure sint enim
-            voluptas fuga cumque suscipit voluptatum fugit incidunt numquam? Voluptates modi beatae esse quae aspernatur
-            libero corrupti? Suscipit, incidunt quia ipsum doloribus doloremque distinctio. Architecto quam vel aliquam
-            voluptate ipsam sit doloribus dignissimos asperiores quasi in quos maxime nobis sapiente, eveniet nesciunt
-            velit? Voluptates nulla beatae sapiente quis, harum alias doloribus optio cupiditate, vitae iusto quisquam?
+            Lorem ipsum dolor sit amet, consectetur adipisicing elit.
           </div>
           <div class="flex items-center justify-between mt-6">
             <div class="flex items-center text-xs font-semibold space-x-2 text-gray-400">
@@ -74,7 +61,7 @@
               <div>&bull;</div>
               <div>Category One</div>
               <div>&bull;</div>
-              <div class="text-gray-900">3 comments</div>
+              <div class="text-gray-900">3 Comments</div>
             </div>
             <div class="flex items-center space-x-2">
               <div class="bg-gray-200 text-xxs font-bold uppercase w-28 h-7 leading-none rounded-lg 
@@ -107,7 +94,7 @@
 
         <div class="mt-8">
           <button class="w-20 bg-blue text-white font-bold text-xxs uppercase rounded-md shadow-sm px-4 py-3 border 
-          hover:border-gray-300 transition duration-150 ease-in">
+          hover:bg-blue-hover transition duration-150 ease-in">
             Voted
           </button>
         </div>
