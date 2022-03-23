@@ -16,11 +16,13 @@
 
   <!-- Scripts -->
   <script src="{{ asset('js/app.js') }}" defer></script>
+
+  @livewireStyles
 </head>
 
 <body class="font-sans text-gray-900 bg-gray-background text-sm">
   <nav class="bg-white shadow-sm">
-    <header class="container mx-auto flex items-center justify-between px-4 py-4">
+    <header class="container mx-auto flex items-center justify-between px-2 py-4 md:px-4">
       <a href="#">
         <img src="{{ asset('images/logo.png') }}" alt="logo" class="w-11" />
       </a>
@@ -52,9 +54,9 @@
     </header>
   </nav>
 
-  <main class="container mx-auto flex p-4 max-w-custom">
-    <div class="w-70 mr-5">
-      <div class="bg-white border-2 rounded-lg mt-16 shadow"
+  <main class="container mx-auto flex flex-col md:flex-row px-2 py-4 md:px-4 max-w-custom">
+    <div class="hidden md:block w-70 mr-5">
+      <div class="bg-white border-2 rounded-lg md:mt-16 shadow md:sticky top-8"
         style="border-image-source: linear-gradient(to bottom, rgba(50, 138, 241, 0.22), rgba(99, 123, 255, 0));
               border-image-slice: 1;
               background-image: linear-gradient(to bottom, #ffffff, #ffffff), linear-gradient(to bottom, rgba(50, 138, 241, 0.22), rgba(99, 123, 255, 0));
@@ -106,8 +108,8 @@
         </form>
       </div>
     </div>
-    <div class="w-175">
-      <nav class="flex items-center justify-between text-xs">
+    <div class="w-full md:w-175">
+      <nav class="hidden md:flex items-center justify-between text-xs">
         <ul class="flex uppercase font-semibold space-x-10 border-b-4 pb-3">
           <li><a href="#" class="border-b-4 pb-3 border-blue">All Ideas (87)</a></li>
           <li><a href="#" class="border-b-4 pb-3 text-gray-400 transition duration-150 ease-in hover:text-gray-900
@@ -125,11 +127,13 @@
         </ul>
       </nav>
 
-      <div class="mt-8">
+      <div class="md:mt-8">
         {{ $slot }}
       </div>
     </div>
   </main>
+
+  @livewireScripts
 </body>
 
 </html>

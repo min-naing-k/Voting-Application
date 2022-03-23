@@ -7,7 +7,7 @@
 }
 
 .idea-container:last-of-type {
-  margin-bottom: 5rem !important;
+  @apply mb-22 !important;
 }
 
 /* Vertical line to the left of the comments */
@@ -16,15 +16,21 @@
   width: 3px;
   height: 100%;
   position: absolute;
-  top: 0;
-  left: -40px;
+  top: -82px;
+  left: 40px;
   display: block;
   background: #edf0f5;
-  /* opacity: .07; */
+}
+
+@media (min-width: 768px) {
+  .comments-container::before {
+    top: 0;
+    left: -40px;
+  }
 }
 
 .comment-container:last-of-type {
-  margin-bottom: 5rem !important;
+  @apply mb-22 !important;
 }
 
 .comment-container::before {
