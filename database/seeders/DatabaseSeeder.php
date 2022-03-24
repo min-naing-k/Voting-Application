@@ -22,11 +22,11 @@ class DatabaseSeeder extends Seeder
     Category::factory()->create(['name' => 'Category 4']);
     Category::factory()->create(['name' => 'Category 5']);
 
-    Status::factory()->create(['name' => 'Open', 'classes' => 'open']);
-    Status::factory()->create(['name' => 'Considering', 'classes' => 'considering']);
-    Status::factory()->create(['name' => 'In Progress', 'classes' => 'in-progress']);
-    Status::factory()->create(['name' => 'Implemented', 'classes' => 'implemented']);
-    Status::factory()->create(['name' => 'Closed', 'classes' => 'closed']);
+    Status::factory()->create(['name' => 'Open']);
+    Status::factory()->create(['name' => 'Considering']);
+    Status::factory()->create(['name' => 'In Progress']);
+    Status::factory()->create(['name' => 'Implemented']);
+    Status::factory()->create(['name' => 'Closed']);
 
     Idea::factory(20)->create();
   }

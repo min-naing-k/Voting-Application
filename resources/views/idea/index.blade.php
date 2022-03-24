@@ -155,7 +155,7 @@
                 </div>
 
                 <div class="flex items-center space-x-2">
-                  <div class="{{ $idea->status->classes }} text-xxs font-bold uppercase w-28 h-7 leading-none rounded-lg
+                  <div class="{{ Str::kebab($idea->status->name) }} flex items-center justify-center text-xxs font-bold uppercase w-28 h-7 leading-none rounded-lg
                 text-center py-2 px-4">
                     {{ $idea->status->name }}
                   </div>
