@@ -155,9 +155,9 @@
                 </div>
 
                 <div class="flex items-center space-x-2">
-                  <div class="bg-gray-200 text-xxs font-bold uppercase w-28 h-7 leading-none rounded-lg
+                  <div class="{{ $idea->status->getStatusClasses() }} text-xxs font-bold uppercase w-28 h-7 leading-none rounded-lg
                 text-center py-2 px-4">
-                    Open
+                    {{ $idea->status->name }}
                   </div>
                   <x-dropdown alignmentClasses="origin-top-right right-0 md:origin-top-left md:left-0">
                     <x-slot name="trigger">

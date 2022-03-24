@@ -81,3 +81,23 @@
   background: theme("colors.purple");
   opacity: 1;
 }
+
+.open {
+  @apply bg-gray-200;
+}
+
+.considering {
+  @apply bg-purple text-white;
+}
+
+.in-progress {
+  @apply bg-yellow text-white;
+}
+
+.implemented {
+  @apply bg-green text-white;
+}
+
+.closed {
+  @apply bg-red text-white;
+}
