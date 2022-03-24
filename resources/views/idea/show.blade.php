@@ -31,7 +31,7 @@
             <div class="hidden md:inline-block">&bull;</div>
             <div>{{ $idea->created_at->diffForHumans() }}</div>
             <div>&bull;</div>
-            <div>Category One</div>
+            <div>{{ $idea->category->name }}</div>
             <div>&bull;</div>
             <div class="text-gray-900">3 Comments</div>
           </div>

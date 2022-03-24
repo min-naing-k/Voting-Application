@@ -95,7 +95,7 @@
   <div class="ideas-container space-y-6 my-6">
     @foreach ($ideas as $idea)
       <div
-        x-data="{target: null, ignore: ['button', 'svg', 'path', 'a']}"
+        x-data="{ target: null, ignore: ['button', 'svg', 'path', 'a'] }"
         @click="
           target = $event.target.tagName.toLowerCase();
           if(!ignore.includes(target)) {
@@ -137,7 +137,7 @@
               <div class="flex items-center text-xs font-semibold space-x-1 md:space-x-2 text-gray-400">
                 <div>{{ $idea->created_at->diffForHumans() }}</div>
                 <div>&bull;</div>
-                <div>Category One</div>
+                <div>{{ $idea->category->name }}</div>
                 <div>&bull;</div>
                 <div class="text-gray-900">3 Comments</div>
               </div>

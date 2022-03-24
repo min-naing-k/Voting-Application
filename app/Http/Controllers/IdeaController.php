@@ -11,27 +11,25 @@ class IdeaController extends Controller
   public function index()
   {
     return view('idea.index', [
-      'ideas' => Idea::simplePaginate(10),
+      'ideas' => Idea::with('user', 'category')
+        ->simplePaginate(Idea::PAGINATE),
     ]);
   }
-
 
   public function create()
   {
     //
   }
 
-
   public function store(StoreIdeaRequest $request)
   {
     //
   }
 
-
   public function show(Idea $idea)
   {
     return view('idea.show', [
-      'idea' => $idea
+      'idea' => $idea,
     ]);
   }
 
@@ -40,12 +38,10 @@ class IdeaController extends Controller
     //
   }
 
-
   public function update(UpdateIdeaRequest $request, Idea $idea)
   {
     //
   }
-
 
   public function destroy(Idea $idea)
   {

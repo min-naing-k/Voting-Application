@@ -10,6 +10,8 @@ class Idea extends Model
 {
   use HasFactory, Sluggable;
 
+  const PAGINATE = 10;
+
   protected $guarded = ['id'];
 
   /**
@@ -29,5 +31,10 @@ class Idea extends Model
   public function user()
   {
     return $this->belongsTo(User::class);
+  }
+
+  public function category()
+  {
+    return $this->belongsTo(Category::class);
   }
 }
