@@ -34,10 +34,10 @@ class User extends Authenticatable
     $integerToUse = is_numeric($firstCharacter) ? ord($firstCharacter) - 21 : ord(strtolower($firstCharacter)) - 96;
 
     return 'https://www.gravatar.com/avatar/'
-      .md5($this->email)
-      .'?s=200'
-      .'&d=https://s3.amazonaws.com/laracasts/images/forum/avatars/default-avatar-'
-      .$integerToUse
-      .'.png';
+    . md5($this->email)
+      . '?s=200'
+      . '&d=https://s3.amazonaws.com/laracasts/images/forum/avatars/default-avatar-'
+      . $integerToUse
+      . '.png';
   }
 }

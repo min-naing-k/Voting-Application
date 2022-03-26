@@ -78,7 +78,7 @@
   border-radius: 38px;
   border: 7px solid white;
   box-shadow: 4px 4px 15px 0 rgb(36 37 38 / 8%);
-  background: theme("colors.purple");
+  background: theme("colors.v-purple");
   opacity: 1;
 }
 
@@ -87,17 +87,17 @@
 }
 
 .considering {
-  @apply bg-purple text-white;
+  @apply bg-v-purple text-white;
 }
 
 .in-progress {
-  @apply bg-yellow text-white;
+  @apply bg-v-yellow text-white;
 }
 
 .implemented {
-  @apply bg-green text-white;
+  @apply bg-v-green text-white;
 }
 
 .closed {
-  @apply bg-red text-white;
+  @apply bg-v-red text-white;
 }

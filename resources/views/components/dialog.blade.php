@@ -1,4 +1,4 @@
-@props(['align' => '', 'width' => '48', 'contentClasses' => '', 'alignmentClasses' => ''])
+@props(['align' => '', 'width' => '48', 'contentClasses' => '', 'alignmentClasses' => '', 'class' => ''])
 
 @php
 switch ($align) {
@@ -21,7 +21,7 @@ switch ($width) {
 }
 @endphp
 
-<div class="relative" x-data="{ open: false }" @click.outside="open = false" @close.stop="open = false">
+<div class="relative {{ $class }}" x-data="{ open: false }" @click.outside="open = false" @close.stop="open = false">
   <div @click="open = ! open">
     {{ $trigger }}
   </div>

@@ -11,12 +11,12 @@ module.exports = {
     extend: {
       colors: {
         "gray-background": "#f7f8fc",
-        "blue": "#328af1",
-        "blue-hover": "#2879bd",
-        "yellow": "#ffc73c",
-        "red": "#ec454f",
-        "green": "#1aab8b",
-        "purple": "#8b60ed",
+        "v-blue": "#328af1",
+        "v-blue-hover": "#2879bd",
+        "v-yellow": "#ffc73c",
+        "v-red": "#ec454f",
+        "v-green": "#1aab8b",
+        "v-purple": "#8b60ed",
       },
       spacing: {
         2.25: "0.5625rem",
