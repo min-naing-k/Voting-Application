@@ -1,22 +1,30 @@
 <div
   x-data="{ target: null, ignore: ['button', 'svg', 'path', 'a'] }"
   @click="
-          target = $event.target.tagName.toLowerCase();
-          if(!ignore.includes(target)) {
-            $event.target.closest('.idea-container').querySelector('.idea-link').click();
-          }
-        "
+    target = $event.target.tagName.toLowerCase();
+    if(!ignore.includes(target)) {
+      $event.target.closest('.idea-container').querySelector('.idea-link').click();
+    }
+  "
   class="idea-container bg-white flex rounded-lg shadow cursor-pointer hover:shadow-card transition duration-150 ease-in">
   <div class="hidden md:flex flex-col justify-between border-r border-gray-100 px-5 py-8">
     <div class="text-center">
-      <div class="font-semibold text-2xl">{{ $idea->votes_count }}</div>
+      <div class="font-semibold text-2xl @if ($hasVoted) text-v-blue @endif">{{ $votesCount }}</div>
       <div class="text-gray-500">Votes</div>
     </div>
     <div class="mt-8">
-      <button class="w-20 bg-gray-200 font-bold text-xxs uppercase rounded-md shadow-sm px-4 py-3 border 
+      {{-- Desktop --}}
+      @if ($hasVoted)
+        <button wire:click.prevent="vote" class="w-20 bg-v-blue text-white font-bold text-xxs uppercase rounded-md shadow-sm px-4 py-3
+          hover:bg-v-blue-hover transition duration-150 ease-in">
+          Voted
+        </button>
+      @else
+        <button wire:click.prevent="vote" class="w-20 bg-gray-200 font-bold text-xxs uppercase rounded-md shadow-sm px-4 py-3 border 
           hover:border-gray-300 transition duration-150 ease-in">
-        Vote
-      </button>
+          Vote
+        </button>
+      @endif
     </div>
   </div>
   <div class="flex flex-col md:flex-row flex-1 px-3 py-3 md:px-2 md:py-6">
@@ -48,18 +56,31 @@
         <div class="flex items-center justify-between space-x-2 mt-8 md:mt-0">
           <div class="flex items-center md:hidden">
             <div class="bg-gray-100 text-center rounded-xl h-10 px-4 py-2 pr-8">
-              <div class="text-sm font-bold leading-none">12</div>
+              <div
+                class="text-sm font-bold leading-none @if ($hasVoted) text-v-blue @endif">{{ $votesCount }}</div>
               <div class="text-xxs font-semibold text-gray-400 leading-none">Votes</div>
             </div>
-            <button type="button"
-              class="w-20 h-10 bg-gray-200 border border-gray-200 font-bold text-xxs 
+            {{-- Mobile --}}
+            @if ($hasVoted)
+              <button type="button"
+                wire:click.prevent="vote"
+                class="w-20 h-10 bg-v-blue text-white font-bold text-xxs 
+                  uppercase rounded-xl hover:bg-v-blue-hover transition duration-150 ease-in px-3 py-2 -mx-6">
+                Voted
+              </button>
+            @else
+              <button type="button"
+                wire:click.prevent="vote"
+                class="w-20 h-10 bg-gray-200 border border-gray-200 font-bold text-xxs 
                   uppercase rounded-xl hover:border-gray-300 transition duration-150 ease-in px-3 py-2 -mx-6">
-              Vote
-            </button>
+                Vote
+              </button>
+            @endif
           </div>
 
           <div class="flex items-center space-x-2">
-            <div class="{{ Str::kebab($idea->status->name) }} flex items-center justify-center text-xxs font-bold uppercase w-28 h-7 leading-none rounded-lg
+            <div
+              class="{{ Str::kebab($idea->status->name) }} flex items-center justify-center text-xxs font-bold uppercase w-28 h-7 leading-none rounded-lg
                 text-center py-2 px-4">
               {{ $idea->status->name }}
             </div>

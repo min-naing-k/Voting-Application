@@ -29,14 +29,25 @@
           <div class="flex items-center justify-between space-x-2 mt-8 md:mt-0">
             <div class="flex items-center md:hidden">
               <div class="bg-gray-100 text-center rounded-xl h-10 px-4 py-2 pr-8">
-                <div class="text-sm font-bold leading-none">{{ $votesCount }}</div>
+                <div class="text-sm font-bold leading-none @if ($hasVoted) text-v-blue @endif">{{ $votesCount }}</div>
                 <div class="text-xxs font-semibold text-gray-400 leading-none">Votes</div>
               </div>
-              <button type="button"
-                class="w-20 h-10 bg-gray-200 border border-gray-200 font-bold text-xxs 
-                uppercase rounded-xl hover:border-gray-300 transition duration-150 ease-in px-3 py-2 -mx-6">
-                Vote
-              </button>
+              {{-- Mobile --}}
+              @if ($hasVoted)
+                <button type="button"
+                  wire:click.prevent="vote"
+                  class="w-20 h-10 bg-v-blue text-white font-bold text-xxs 
+                uppercase rounded-xl hover:bg-v-blue-hover transition duration-150 ease-in px-3 py-2 -mx-6">
+                  Voted
+                </button>
+              @else
+                <button type="button"
+                  wire:click.prevent="vote"
+                  class="w-20 h-10 bg-gray-200 border border-gray-200 font-bold text-xxs 
+              uppercase rounded-xl hover:border-gray-300 transition duration-150 ease-in px-3 py-2 -mx-6">
+                  Vote
+                </button>
+              @endif
             </div>
 
             <div class="flex items-center space-x-2">
@@ -190,15 +201,26 @@
     </div>
     <div class="hidden md:flex items-center space-x-3">
       <div class="bg-white text-center px-3 py-2 font-semibold rounded-lg shadow-sm">
-        <div class="text-xl leading-snug">{{ $votesCount }}</div>
+        <div class="text-xl leading-snug {{ $hasVoted ? 'text-v-blue' : '' }}">{{ $votesCount }}</div>
         <div class="text-gray-400 text-xs leading-none">Votes</div>
       </div>
       <div>
-        <button type="button"
-          class="flex items-center justify-center w-36 h-11 text-xs bg-gray-200 
+        {{-- Desktop --}}
+        @if ($hasVoted)
+          <button type="button"
+            wire:click.prevent="vote"
+            class="flex items-center justify-center w-36 h-11 text-xs bg-v-blue text-white
+            font-semibold rounded-md uppercase hover:bg-v-blue-hover transition duration-150 ease-in">
+            Voted
+          </button>
+        @else
+          <button type="button"
+            wire:click.prevent="vote"
+            class="flex items-center justify-center w-36 h-11 text-xs bg-gray-200 
             font-semibold rounded-md uppercase border border-gray-200 hover:border-gray-300 transition duration-150 ease-in">
-          <span class="ml-1">Vote</span>
-        </button>
+            Vote
+          </button>
+        @endif
       </div>
     </div>
   </div> <!-- End Button Container -->
