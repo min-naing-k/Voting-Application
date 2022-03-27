@@ -61,6 +61,12 @@ class Idea extends Model
 
   public function toggleVote(User $user)
   {
+    if ($this->isVotedByUser($user)) {
+      $this->decrement('votes_count');
+    } else {
+      $this->increment('votes_count');
+    }
+
     $this->votes()->toggle($user->id);
   }
 }

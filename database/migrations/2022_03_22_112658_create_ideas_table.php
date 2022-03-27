@@ -21,6 +21,7 @@ class CreateIdeasTable extends Migration
       $table->string('title');
       $table->string('slug')->nullable();
       $table->text('description');
+      $table->unsignedBigInteger('votes_count')->default(0);
       $table->timestamps();
     });
   }

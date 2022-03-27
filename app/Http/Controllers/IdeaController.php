@@ -15,17 +15,12 @@ class IdeaController extends Controller
     //         ->where('user_id', auth()->id())
     //         ->whereColumn('idea_id', 'ideas.id'),
     //     ])
-    return view('idea.index', [
-      'ideas' => Idea::with('user', 'category', 'status')
-        ->withCount([
-          'votes',
-          'votes as voted_by_user' => function($query) {
-            $query->where('user_id', auth()->id());
-          }
-        ])
-        ->orderBy('id', 'desc')
-        ->simplePaginate(Idea::PAGINATION_COUNT),
-    ]);
+    // ->withCount([
+    //   'votes as voted_by_user' => function ($query) {
+    //     $query->where('user_id', auth()->id());
+    //   },
+    // ])
+    return view('idea.index');
   }
 
   public function create()
