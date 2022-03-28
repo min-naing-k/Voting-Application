@@ -10,26 +10,44 @@ class IdeasIndex extends Component
 {
   use WithPagination;
 
-  public $status, $category, $filter;
+  public $status, $category, $filter, $search;
 
-  protected $queryString = ['status', 'category' => ['except' => ''], 'filter' => [ 'except' => '' ]];
+  protected $queryString = [
+    'status',
+    'category' => ['except' => ''],
+    'filter' => ['except' => ''],
+    'search' => ['except' => ''],
+  ];
 
-  protected $listeners = ['queryStringUpdatedStatus', 'queryStringUpdatedCategory', 'queryStringUpdatedFilter'];
+  protected $listeners = [
+    'queryStringUpdatedStatus',
+    'queryStringUpdatedCategory',
+    'queryStringUpdatedFilter',
+    'queryStringUpdatedSearch',
+  ];
 
   public function queryStringUpdatedStatus($new_status)
   {
     $this->resetPage();
-    $this->status = $new_status;
+    $this->status = $new_status === 'all' ? null : $new_status;
   }
 
   public function queryStringUpdatedCategory($new_category)
   {
+    $this->resetPage();
     $this->category = $new_category;
   }
 
   public function queryStringUpdatedFilter($new_filter)
   {
+    $this->resetPage();
     $this->filter = $new_filter;
+  }
+
+  public function queryStringUpdatedSearch($new_search)
+  {
+    $this->resetPage();
+    $this->search = $new_search;
   }
 
   public function render()
@@ -49,8 +67,14 @@ class IdeasIndex extends Component
         ->when($this->filter === 'top-voted', function ($query) {
           $query->orderByDesc('votes_count');
         })
-        ->when($this->filter === 'my-ideas', function($query) {
+        ->when($this->filter === 'my-ideas', function ($query) {
           $query->where('user_id', auth()->id());
+        })
+        ->when(strlen($this->search) >= 3, function ($query) {
+          $query->where(function ($query) {
+            $query->where('title', 'like', "%$this->search%")
+              ->orWhere('description', 'like', "%$this->search%");
+          });
         })
         ->withCount([
           'votes as voted_by_user' => function ($query) {
@@ -61,10 +85,5 @@ class IdeasIndex extends Component
         ->simplePaginate(Idea::PAGINATION_COUNT)
         ->withQueryString(),
     ]);
-  }
-
-  public function scopeFilter($query, array $filter)
-  {
-    return $this->name;
   }
 }

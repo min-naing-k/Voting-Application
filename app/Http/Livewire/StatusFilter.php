@@ -31,12 +31,12 @@ class StatusFilter extends Component
     //     'status' => $new_status === 'all' ? null : $new_status,
     //   ]);
     // }
-    $this->status = $new_status === 'all' ? null : $new_status;
+    $this->status = $new_status;
     $this->emit('queryStringUpdatedStatus', $this->status);
 
     if ($this->getPreviousRouteName() === 'idea.show') {
       return redirect()->route('idea.index', [
-        'status' => $this->status,
+        'status' => $this->status === 'all' ? null : $this->status,
       ]);
     }
   }

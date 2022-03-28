@@ -7,7 +7,14 @@ use Livewire\Component;
 
 class CustomFilter extends Component
 {
-  public $category, $filter;
+  public $category, $filter, $search;
+
+  public function mount()
+  {
+    $this->category = request('category') ?? null;
+    $this->filter = request('filter') ?? null;
+    $this->search = request('search') ?? null;
+  }
 
   public function updatedCategory($new_category)
   {
@@ -23,6 +30,11 @@ class CustomFilter extends Component
     }
 
     $this->emit('queryStringUpdatedFilter', $new_filter);
+  }
+
+  public function updatedSearch($new_search)
+  {
+    $this->emit('queryStringUpdatedSearch', $new_search);
   }
 
   public function render()

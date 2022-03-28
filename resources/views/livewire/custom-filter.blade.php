@@ -1,7 +1,7 @@
 <div class="flex items-center space-x-2 md:space-x-4">
   <div class="w-1/3">
-    <select wire:model="category" name="category" id="category" class="w-full rounded-md shadow transition duration-150 ease-in border 
-    border-transparent foucs:border-blue">
+    <select wire:model="category" name="category" id="category"
+      class="w-full rounded-md shadow transition duration-150 ease-in border border-transparent foucs:border-blue">
       <option value="">All Categories</option>
       @foreach ($categories as $category)
         <option value="{{ $category->slug }}">{{ $category->name }}</option>
@@ -9,15 +9,15 @@
     </select>
   </div>
   <div class="w-1/3">
-    <select wire:model="filter" name="other_filters" id="other_filters" class="w-full rounded-md shadow transition duration-150 ease-in 
-    border border-transparent foucs:border-blue">
+    <select wire:model="filter" name="other_filters" id="other_filters"
+      class="w-full rounded-md shadow transition duration-150 ease-in border border-transparent foucs:border-blue">
       <option value="">No Filter</option>
       <option value="top-voted">Top Voted</option>
       <option value="my-ideas">My Ideas</option>
     </select>
   </div>
   <div class="w-1/3 relative">
-    <input type="search"
+    <input wire:model="search" type="search"
       class="w-full border border-transparent pl-8 py-2 pr-4 shadow rounded-md
      placeholder:text-gray-900 focus:placeholder:text-gray-400 focus:border-blue transition duration-150 ease-in"
       placeholder="Find an idea">
