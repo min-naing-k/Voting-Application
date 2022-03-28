@@ -9,12 +9,11 @@
     </select>
   </div>
   <div class="w-1/3">
-    <select name="other_filters" id="other_filters" class="w-full rounded-md shadow transition duration-150 ease-in 
+    <select wire:model="filter" name="other_filters" id="other_filters" class="w-full rounded-md shadow transition duration-150 ease-in 
     border border-transparent foucs:border-blue">
-      <option value="">Other Filter</option>
-      <option value="other_filter_one">Other filter One</option>
-      <option value="other_filter_two">Other filter Two</option>
-      <option value="other_filter_three">Other filter Threee</option>
+      <option value="">No Filter</option>
+      <option value="top-voted">Top Voted</option>
+      <option value="my-ideas">My Ideas</option>
     </select>
   </div>
   <div class="w-1/3 relative">
