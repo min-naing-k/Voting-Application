@@ -73,7 +73,10 @@ class IdeasIndex extends Component
         ->when(strlen($this->search) >= 3, function ($query) {
           $query->where(function ($query) {
             $query->where('title', 'like', "%$this->search%")
-              ->orWhere('description', 'like', "%$this->search%");
+              ->orWhere('description', 'like', "%$this->search%")
+              ->orWhereHas('user', function($query) {
+                $query->where('name', 'like', "%$this->search%");
+              });
           });
         })
         ->withCount([

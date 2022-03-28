@@ -767,6 +767,9 @@ select {
 .-mr-2 {
   margin-right: -0.5rem;
 }
+.mt-12 {
+  margin-top: 3rem;
+}
 .block {
   display: block;
 }
@@ -1412,6 +1415,9 @@ select {
 }
 .opacity-100 {
   opacity: 1;
+}
+.mix-blend-luminosity {
+  mix-blend-mode: luminosity;
 }
 .shadow-sm {
   --tw-shadow: 0 1px 2px 0 rgb(0 0 0 / 0.05);
