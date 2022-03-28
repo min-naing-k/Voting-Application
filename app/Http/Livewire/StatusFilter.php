@@ -2,7 +2,6 @@
 
 namespace App\Http\Livewire;
 
-use App\Models\Idea;
 use App\Models\Status;
 use Illuminate\Support\Facades\Route;
 use Livewire\Component;
@@ -13,14 +12,9 @@ class StatusFilter extends Component
   public $redirect = false;
   public $statusCounts;
 
-  protected $queryString = [
-    'status' => [
-      'except' => 'all',
-    ],
-  ];
-
   public function mount()
   {
+    $this->status = request('status') ?? 'all';
     $this->statusCounts = Status::getCount();
     // $this->statusCounts = Status::getCountByDynamic();
 
@@ -30,21 +24,21 @@ class StatusFilter extends Component
     }
   }
 
-  public function setStatus($new_status = 'all')
+  public function setStatus($new_status)
   {
     // if ($this->redirect) {
     //   return redirect()->route('idea.index', [
     //     'status' => $new_status === 'all' ? null : $new_status,
     //   ]);
     // }
-    
-    $this->status = $new_status;
-    // if ($this->getPreviousRouteName() === 'idea.show') {
-    return redirect()->route('idea.index', [
-      'status' => $this->status === 'all' ? null : $this->status,
-    ]);
-    // }
+    $this->status = $new_status === 'all' ? null : $new_status;
+    $this->emit('queryStringUpdatedStatus', $this->status);
 
+    if ($this->getPreviousRouteName() === 'idea.show') {
+      return redirect()->route('idea.index', [
+        'status' => $this->status,
+      ]);
+    }
   }
 
   public function render()

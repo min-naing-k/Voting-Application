@@ -2,7 +2,7 @@
   <ul class="flex uppercase font-semibold space-x-5 border-b-4 pb-3">
     <li>
       <a
-        wire:click.prevent="setStatus()" href="#"
+        wire:click.prevent="setStatus('all')" href="#"
         class="border-b-4 pb-3 transition duration-150 ease-in hover:text-gray-900 hover:border-v-blue @if ($status === 'all') text-gray-900 border-v-blue @endif">
         All Ideas ({{ $statusCounts['all_statuses'] }})
       </a>
