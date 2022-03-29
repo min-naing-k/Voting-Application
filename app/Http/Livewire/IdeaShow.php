@@ -10,10 +10,17 @@ class IdeaShow extends Component
   public Idea $idea;
   public $votesCount, $hasVoted;
 
+  protected $listeners = ['updateStatus'];
+
   public function mount($votesCount)
   {
     $this->votesCount = $votesCount;
     $this->hasVoted = $this->idea->isVotedByUser(auth()->user());
+  }
+
+  public function updateStatus()
+  {
+    $this->idea->refresh();
   }
 
   public function vote()

@@ -101,3 +101,23 @@
 .closed {
   @apply bg-v-red text-white;
 }
+
+.open-radio {
+  @apply text-gray-900 focus:ring-gray-900;
+}
+
+.considering-radio {
+  @apply text-v-purple focus:ring-v-purple;
+}
+
+.in-progress-radio {
+  @apply text-v-yellow focus:ring-v-yellow;
+}
+
+.implemented-radio {
+  @apply text-v-green focus:ring-v-green;
+}
+
+.closed-radio {
+  @apply text-v-red focus:ring-v-red;
+}

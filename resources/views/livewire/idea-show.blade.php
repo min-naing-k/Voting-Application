@@ -44,7 +44,7 @@
                 <button type="button"
                   wire:click.prevent="vote"
                   class="w-20 h-10 bg-gray-200 border border-gray-200 font-bold text-xxs 
-              uppercase rounded-xl hover:border-gray-300 transition duration-150 ease-in px-3 py-2 -mx-6">
+                        uppercase rounded-xl hover:border-gray-300 transition duration-150 ease-in px-3 py-2 -mx-6">
                   Vote
                 </button>
               @endif
@@ -117,87 +117,9 @@
           </form>
         </x-slot>
       </x-dialog>
-      <x-dialog
-        alignmentClasses="origin-top-right right-0 md:origin-top-left md:left-0"
-        width="w-76">
-        <x-slot name="trigger">
-          <button type="button"
-            class="flex items-center justify-center w-36 h-11 text-xs bg-gray-200
-              font-semibold rounded-md border border-gray-200 hover:border-gray-300 transition duration-150 ease-in">
-            <span class="ml-1">Set Status</span>
-            <svg class="w-4 ml-2" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
-              <path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7" />
-            </svg>
-          </button>
-        </x-slot>
-        <x-slot name="content">
-          <form action="#" method="POST" class="space-y-4">
-            <div class="space-y-2">
-              <div>
-                <label class="inline-flex items-center">
-                  <input type="radio" checked name="radio_direct"
-                    class="bg-gray-100 border-gray-300 text-gray-900 focus:ring-gray-900 focus:ring-opacity-70 transition duration-150 ease-in" value="1" />
-                  <span class="ml-2 select-none">Open</span>
-                </label>
-              </div>
-              <div>
-                <label class="inline-flex items-center">
-                  <input type="radio" name="radio_direct"
-                    class="bg-gray-100 border-gray-300 text-v-yellow focus:ring-v-yellow focus:ring-opacity-70 transition duration-150 ease-in" value="1" />
-                  <span class="ml-2 select-none">In Progress</span>
-                </label>
-              </div>
-              <div>
-                <label class="inline-flex items-center">
-                  <input type="radio" name="radio_direct"
-                    class="bg-gray-100 border-gray-300 text-v-red focus:ring-v-red focus:ring-opacity-70 transition duration-150 ease-in" value="1" />
-                  <span class="ml-2 select-none">Closed</span>
-                </label>
-              </div>
-              <div>
-                <label class="inline-flex items-center">
-                  <input type="radio" name="radio_direct"
-                    class="bg-gray-100 border-gray-300 text-v-green focus:ring-v-green focus:ring-opacity-70 transition duration-150 ease-in" value="1" />
-                  <span class="ml-2 select-none">Implemented</span>
-                </label>
-              </div>
-              <div>
-                <label class="inline-flex items-center">
-                  <input type="radio" name="radio_direct"
-                    class="bg-gray-100 border-gray-300 text-v-purple focus:ring-v-purple focus:ring-opacity-70 transition duration-150 ease-in" value="1" />
-                  <span class="ml-2 select-none">Considering</span>
-                </label>
-              </div>
-            </div>
-            <div>
-              <textarea name="update_comment" id="update_comment" cols="30" rows="3"
-                class="w-full bg-gray-100 border-gray-200 text-sm placeholder:text-gray-400 rounded-md transition duration-150 ease-in"
-                placeholder="Add an update comment (optional)"></textarea>
-            </div>
-            <div class="flex items-center space-x-3">
-              <button type="button" @click="open = false"
-                class="flex items-center justify-center w-1/2 h-11 text-xs bg-gray-200 
-            font-semibold rounded-md border border-gray-200 hover:border-gray-300 transition duration-150 ease-in">
-                <svg class="text-gray-600 w-4 transform -rotate-45" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
-                  <path stroke-linecap="round" stroke-linejoin="round" d="M15.172 7l-6.586 6.586a2 2 0 102.828 2.828l6.414-6.586a4 4 0 00-5.656-5.656l-6.415 6.585a6 6 0 108.486 8.486L20.5 13" />
-                </svg>
-                <span class="ml-1">Attach</span>
-              </button>
-              <button type="button" @click="open = false"
-                class="flex items-center justify-center w-1/2 h-11 text-xs bg-v-blue text-white 
-            font-semibold rounded-md hover:bg-v-blue-hover transition duration-150 ease-in">
-                Submit
-              </button>
-            </div>
-            <div>
-              <label class="inline-flex items-center">
-                <input type="checkbox" name="notify_users" checked class="bg-gray-100 border-gray-200 rounded transition duration-150 ease-in" />
-                <span class="ml-2 select-none">Notify all voters</span>
-              </label>
-            </div>
-          </form>
-        </x-slot>
-      </x-dialog>
+      @can('change status')
+        <livewire:set-status :idea="$idea" />
+      @endcan
     </div>
     <div class="hidden md:flex items-center space-x-3">
       <div class="bg-white text-center px-3 py-2 font-semibold rounded-lg shadow-sm">

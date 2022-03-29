@@ -10,6 +10,9 @@ class IdeaController extends Controller
 {
   public function index()
   {
+    // $user = User::findOrFail(1);
+    // $user->assignRole('admin');
+
     # You can replace withCount(['..', 'votes as voted_by_user'])
     // ->addSelect(['voted_by_user' => Vote::select('id')
     //         ->where('user_id', auth()->id())
@@ -20,6 +23,7 @@ class IdeaController extends Controller
     //     $query->where('user_id', auth()->id());
     //   },
     // ])
+    
     return view('idea.index');
   }
 
