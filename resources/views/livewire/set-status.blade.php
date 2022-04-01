@@ -49,7 +49,7 @@
       </div>
       <div>
         <label class="inline-flex items-center">
-          <input wire:model="notifyAllVoter" type="checkbox" name="notify_users" class="bg-gray-100 border-gray-200 rounded transition duration-150 ease-in" />
+          <input wire:model="notifyAllVoters" type="checkbox" name="notify_users" class="bg-gray-100 border-gray-200 rounded transition duration-150 ease-in" />
           <span class="ml-2 select-none">Notify all voters</span>
         </label>
       </div>

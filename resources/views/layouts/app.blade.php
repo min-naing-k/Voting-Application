@@ -12,10 +12,10 @@
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600;700&display=swap">
 
   <!-- Styles -->
-  <link rel="stylesheet" href="{{ asset('css/app.css') }}">
+  <link rel="stylesheet" href="{{ mix('css/app.css') }}">
 
   <!-- Scripts -->
-  <script src="{{ asset('js/app.js') }}" defer></script>
+  <script src="{{ mix('js/app.js') }}" defer></script>
 
   @livewireStyles
 </head>
@@ -77,9 +77,9 @@
           <livewire:create-idea />
         @else
           <div class="my-6 px-4 flex gap-3">
-            <x-button-link href="{{ route('login') }}" class="bg-v-blue text-white hover:bg-v-blue-hover border-none">Login</x-button-link>
+            <x-button-link href="{{ route('login') }}" class="bg-v-blue text-white w-1/2 h-11 hover:bg-v-blue-hover">Login</x-button-link>
 
-            <x-button-link href="{{ route('register') }}">Sign up</x-button-link>
+            <x-button-link href="{{ route('register') }}" class="bg-gray-100 w-1/2 h-11 hover:border-gray-300">Sign up</x-button-link>
           </div>
         @endauth
       </div>
