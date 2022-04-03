@@ -121,3 +121,10 @@
 .closed-radio {
   @apply text-v-red focus:ring-v-red;
 }
+
+/* Media Query For Edit Idea Modal */
+@media (max-height: 389px) {
+  .modal-container {
+    overflow-y: auto !important;
+  }
+}

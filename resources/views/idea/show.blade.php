@@ -9,7 +9,7 @@
   </div>
 
   <!-- Mobile Reply to Comment button -->
-  <div class="md:hidden fixed bottom-5 right-5 z-50">
+  <div class="md:hidden fixed bottom-5 right-5 z-10">
     <x-dialog
       alignmentClasses="origin-bottom-right -top-57 -right-2.25"
       width="w-88">

@@ -67,7 +67,10 @@
                   </button>
                 </x-slot>
                 <x-slot name="content">
-                  <x-dropdown-link href="#">Edit an idea</x-dropdown-link>
+                  <button 
+                  @click.prevent="$dispatch('open-edit-modal')"
+                  type="button" 
+                  class="hover:bg-gray-100 px-5 py-3 block font-semibold transition duration-150 ease-in">Edit an idea</button>
                   <x-dropdown-link href="#">Delete an idea</x-dropdown-link>
                   <x-dropdown-link href="#">Mark as spam</x-dropdown-link>
                 </x-slot>
