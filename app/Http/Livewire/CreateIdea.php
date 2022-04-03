@@ -23,7 +23,9 @@ class CreateIdea extends Component
     $attributes['user_id'] = auth()->id();
     $attributes['status_id'] = 1;
 
-    Idea::create($attributes);
+    $idea = Idea::create($attributes);
+
+    $idea->toggleVote(auth()->user());
 
     $this->reset();
 
