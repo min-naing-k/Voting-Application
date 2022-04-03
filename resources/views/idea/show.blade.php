@@ -53,6 +53,8 @@
     :votesCount="$votesCount"
   />
 
+  <livewire:edit-idea />
+
   <div class="comments-container relative space-y-4 md:space-y-6 md:ml-22 mb-8 mt-1 md:pt-6">
     <div class="comment-container relative bg-white flex rounded-lg shadow mt-4">
       <div class="flex flex-1 px-4 py-6">

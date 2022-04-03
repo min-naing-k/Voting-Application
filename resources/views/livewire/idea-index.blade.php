@@ -84,22 +84,6 @@
                 text-center py-2 px-4">
               {{ $idea->status->name }}
             </div>
-            <x-dropdown alignmentClasses="origin-top-right right-0 md:origin-top-left md:left-0">
-              <x-slot name="trigger">
-                <button
-                  class="relative bg-gray-100 hover:bg-gray-200 rounded-lg flex items-center h-7
-                      transition duration-150 ease-in py-2 px-3">
-                  <svg xmlns="http://www.w3.org/2000/svg" class="w-5 text-gray-400" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
-                    <path stroke-linecap="round" stroke-linejoin="round"
-                      d="M5 12h.01M12 12h.01M19 12h.01M6 12a1 1 0 11-2 0 1 1 0 012 0zm7 0a1 1 0 11-2 0 1 1 0 012 0zm7 0a1 1 0 11-2 0 1 1 0 012 0z" />
-                  </svg>
-                </button>
-              </x-slot>
-              <x-slot name="content">
-                <x-dropdown-link href="#">Mark as spam</x-dropdown-link>
-                <x-dropdown-link href="#">Mark as delete</x-dropdown-link>
-              </x-slot>
-            </x-dropdown>
           </div>
         </div>
       </div>

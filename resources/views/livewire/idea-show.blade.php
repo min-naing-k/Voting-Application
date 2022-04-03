@@ -67,8 +67,9 @@
                   </button>
                 </x-slot>
                 <x-slot name="content">
+                  <x-dropdown-link href="#">Edit an idea</x-dropdown-link>
+                  <x-dropdown-link href="#">Delete an idea</x-dropdown-link>
                   <x-dropdown-link href="#">Mark as spam</x-dropdown-link>
-                  <x-dropdown-link href="#">Mark as delete</x-dropdown-link>
                 </x-slot>
               </x-dropdown>
             </div>
