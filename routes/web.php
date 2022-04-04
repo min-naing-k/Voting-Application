@@ -22,8 +22,9 @@ Route::get('ideas/{idea:slug}', [IdeaController::class, 'show'])->name('idea.sho
 Route::get('test', function () {
   User::chunk(2, function ($users) {
     foreach ($users as $user) {
-      $user->email_verified_at = now();
-      $user->update();
+      // $user->email_verified_at = now();
+      // $user->update();
+      $user->assignRole('idea-owner');
     }
   });
 

@@ -8,6 +8,9 @@ use App\Models\Status;
 use App\Models\User;
 use App\Models\Vote;
 use Illuminate\Database\Seeder;
+use Spatie\Permission\Models\Permission;
+use Spatie\Permission\Models\Role;
+use Spatie\Permission\PermissionRegistrar;
 
 class DatabaseSeeder extends Seeder
 {
@@ -18,12 +21,32 @@ class DatabaseSeeder extends Seeder
    */
   public function run()
   {
-    User::factory()->create([
+    // Reset cached roles and permissions
+    app()[PermissionRegistrar::class]->forgetCachedPermissions();
+
+    // Create permissions
+    Permission::create(['name' => 'change status']);
+    Permission::create(['name' => 'create idea']);
+    Permission::create(['name' => 'show idea']);
+    Permission::create(['name' => 'edit idea']);
+    Permission::create(['name' => 'delete idea']);
+
+    // Create roles
+    $admin = Role::create(['name' => 'admin']);
+    $admin->givePermissionTo(['change status', 'create idea', 'show idea', 'edit idea', 'delete idea']);
+    $idea_owner = Role::create(['name' => 'idea-owner']);
+    $idea_owner->givePermissionTo(['create idea', 'show idea', 'edit idea', 'delete idea']);
+
+    $admin_user = User::factory()->create([
       'name' => 'Min Naing Kyaw',
       'email' => 'minnaingmdy436@gmail.com',
     ]);
+    $admin_user->assignRole($admin);
 
-    User::factory(19)->create();
+    foreach (range(1, 19) as $item) {
+      $user = User::factory()->create();
+      $user->assignRole($idea_owner);
+    }
 
     Category::factory()->create(['name' => 'Category 1']);
     Category::factory()->create(['name' => 'Category 2']);

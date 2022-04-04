@@ -16,6 +16,11 @@ class CreateIdea extends Component
     'description' => 'required',
   ];
 
+  protected $messages = [
+    'category_id.required' => 'The category field is required.',
+    'category_id.integer' => 'The category field is invalid.',
+  ];
+
   public function createIdea()
   {
     $attributes = $this->validate();
@@ -36,8 +41,6 @@ class CreateIdea extends Component
 
   public function render()
   {
-    return view('livewire.create-idea', [
-      'categories' => Category::all(),
-    ]);
+    return view('livewire.create-idea');
   }
 }

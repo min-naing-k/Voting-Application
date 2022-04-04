@@ -70,7 +70,7 @@ class IdeasIndex extends Component
         ->when($this->filter === 'my-ideas', function ($query) {
           $query->where('user_id', auth()->id());
         })
-        ->when(strlen($this->search) >= 3, function ($query) {
+        ->when($this->search && strlen($this->search) >= 3, function ($query) {
           $query->where(function ($query) {
             $query->where('title', 'like', "%$this->search%")
               ->orWhere('description', 'like', "%$this->search%")
