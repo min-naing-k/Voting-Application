@@ -75,7 +75,14 @@
                       Edit an idea
                     </button>
                   @endcan
-                  <x-dropdown-link href="#">Delete an idea</x-dropdown-link>
+                  @can('delete', $idea)
+                    <button
+                      @click.prevent="$dispatch('open-delete-modal')"
+                      type="button"
+                      class="hover:bg-gray-100 px-5 py-3 block w-full text-left font-semibold transition duration-150 ease-in">
+                      Delete idea
+                    </button>
+                  @endcan
                   <x-dropdown-link href="#">Mark as spam</x-dropdown-link>
                 </x-slot>
               </x-dropdown>
