@@ -42,6 +42,11 @@
           <a href="{{ route('idea.show', $idea) }}" class="hover:underline">{{ $idea->title }}</a>
         </h4>
         <div class="text-gray-600 mt-3 line-clamp-3">
+          @admin
+            @if ($idea->spam_reports > 0)
+              <p class="text-red-500 text-sm font-semibold mb-2">Spam Reports: {{ $idea->spam_reports }}</p>
+            @endif
+          @endadmin
           {{ $idea->description }}
         </div>
       </div>

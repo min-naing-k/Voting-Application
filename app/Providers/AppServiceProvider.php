@@ -3,6 +3,7 @@
 namespace App\Providers;
 
 use App\Models\Category;
+use Illuminate\Support\Facades\Blade;
 use Illuminate\Support\Facades\View;
 use Illuminate\Support\ServiceProvider;
 
@@ -30,6 +31,10 @@ class AppServiceProvider extends ServiceProvider
         $view->with([
           'categories' => $categories,
         ]);
+      });
+
+      Blade::if('admin', function() {
+        return auth()->check() && auth()->user()->hasRole('admin');
       });
     }
 }

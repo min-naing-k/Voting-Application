@@ -14,6 +14,11 @@
           {{ $idea->title }}
         </h4>
         <div class="text-gray-600 mt-3">
+          @admin
+          @if ($idea->spam_reports > 0)
+            <p class="text-red-500 text-sm font-semibold mb-2">Spam Reports: {{ $idea->spam_reports }}</p>
+          @endif
+          @endadmin
           {{ $idea->description }}
         </div>
         <div class="flex flex-col md:flex-row md:items-center justify-between mt-3 md:mt-6">
@@ -55,37 +60,52 @@
                 text-center py-2 px-4">
                 {{ $idea->status->name }}
               </div>
-              <x-dropdown alignmentClasses="origin-top-right right-0 md:origin-top-left md:left-0">
-                <x-slot name="trigger">
-                  <button
-                    class="relative bg-gray-100 hover:bg-gray-200 rounded-lg flex items-center h-7
+              @auth
+                <x-dropdown alignmentClasses="origin-top-right right-0 md:origin-top-left md:left-0">
+                  <x-slot name="trigger">
+                    <button
+                      class="relative bg-gray-100 hover:bg-gray-200 rounded-lg flex items-center h-7
                     transition duration-150 ease-in py-2 px-3">
-                    <svg xmlns="http://www.w3.org/2000/svg" class="w-5 text-gray-400" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
-                      <path stroke-linecap="round" stroke-linejoin="round"
-                        d="M5 12h.01M12 12h.01M19 12h.01M6 12a1 1 0 11-2 0 1 1 0 012 0zm7 0a1 1 0 11-2 0 1 1 0 012 0zm7 0a1 1 0 11-2 0 1 1 0 012 0z" />
-                    </svg>
-                  </button>
-                </x-slot>
-                <x-slot name="content">
-                  @can('update', $idea)
+                      <svg xmlns="http://www.w3.org/2000/svg" class="w-5 text-gray-400" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                        <path stroke-linecap="round" stroke-linejoin="round"
+                          d="M5 12h.01M12 12h.01M19 12h.01M6 12a1 1 0 11-2 0 1 1 0 012 0zm7 0a1 1 0 11-2 0 1 1 0 012 0zm7 0a1 1 0 11-2 0 1 1 0 012 0z" />
+                      </svg>
+                    </button>
+                  </x-slot>
+                  <x-slot name="content">
+                    @can('update', $idea)
+                      <button
+                        @click.prevent="$dispatch('open-edit-modal')"
+                        type="button"
+                        class="hover:bg-gray-100 px-5 py-3 block w-full text-left font-semibold transition duration-150 ease-in">
+                        Edit an idea
+                      </button>
+                    @endcan
+                    @can('delete', $idea)
+                      <button
+                        @click.prevent="$dispatch('open-delete-modal')"
+                        type="button"
+                        class="hover:bg-gray-100 px-5 py-3 block w-full text-left font-semibold transition duration-150 ease-in">
+                        Delete idea
+                      </button>
+                    @endcan
                     <button
-                      @click.prevent="$dispatch('open-edit-modal')"
+                      @click.prevent="$dispatch('open-mark-idea-as-spam-modal')"
                       type="button"
                       class="hover:bg-gray-100 px-5 py-3 block w-full text-left font-semibold transition duration-150 ease-in">
-                      Edit an idea
+                      Mark as spam
                     </button>
-                  @endcan
-                  @can('delete', $idea)
+                    @admin
                     <button
-                      @click.prevent="$dispatch('open-delete-modal')"
+                      @click.prevent="$dispatch('open-reset-spam-reports-modal')"
                       type="button"
                       class="hover:bg-gray-100 px-5 py-3 block w-full text-left font-semibold transition duration-150 ease-in">
-                      Delete idea
+                      Reset spam reports
                     </button>
-                  @endcan
-                  <x-dropdown-link href="#">Mark as spam</x-dropdown-link>
-                </x-slot>
-              </x-dropdown>
+                    @endadmin
+                  </x-slot>
+                </x-dropdown>
+              @endauth
             </div>
           </div>
         </div>
