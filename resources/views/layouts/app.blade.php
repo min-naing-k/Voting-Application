@@ -93,6 +93,8 @@
     </div>
   </main>
 
+  @stack('modals')
+
   @livewireScripts
 </body>
 

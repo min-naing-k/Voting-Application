@@ -6,7 +6,7 @@ use App\Models\Idea;
 use Illuminate\Http\Response;
 use Livewire\Component;
 
-class ResetSpamReports extends Component
+class ResetIdeaSpamReports extends Component
 {
   public $idea;
 
@@ -15,7 +15,7 @@ class ResetSpamReports extends Component
     $this->idea = $idea;
   }
 
-  public function resetSpamReports()
+  public function resetIdeaSpamReports()
   {
     if(!auth()->check() || !auth()->user()->hasRole('admin')) {
       abort(Response::HTTP_FORBIDDEN);
@@ -30,6 +30,6 @@ class ResetSpamReports extends Component
 
   public function render()
   {
-    return view('livewire.reset-spam-reports');
+    return view('livewire.reset-idea-spam-reports');
   }
 }

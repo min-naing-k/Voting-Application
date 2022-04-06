@@ -97,7 +97,7 @@
                     </button>
                     @admin
                     <button
-                      @click.prevent="$dispatch('open-reset-spam-reports-modal')"
+                      @click.prevent="$dispatch('open-reset-idea-spam-reports-modal')"
                       type="button"
                       class="hover:bg-gray-100 px-5 py-3 block w-full text-left font-semibold transition duration-150 ease-in">
                       Reset spam reports

@@ -1,16 +1,28 @@
+@props([
+  'eventToOpenModal',
+  'eventToCloseModal' => null,
+  'modalTitle',
+  'modalDescription',
+  'modalConfirmButtonText',
+  'modalConfirmButtonColor' => 'bg-indigo-500 text-white focus:ring-indigo-500 hover:bg-indigo-600',
+  'wireClick'
+])
+
 <div
   x-data="{ open: false }"
   x-show="open"
-  @open-reset-spam-reports-modal.window="
+  {{ '@' . $eventToOpenModal }}.window="
     open = true;
     $nextTick(() => { $refs.cancelButton.focus(); });
   "
-  @keydown.escape.window="open = false"
   x-init="
-    Livewire.on('resetIdeaSpamReports', function() {
-      open = false;
-    });
+    if('{{ $eventToCloseModal }}') {
+      Livewire.on('{{ $eventToCloseModal }}', function() {
+        open = false;
+      });
+    }
   "
+  @keydown.escape.window="open = false"
   class="fixed z-10 inset-0 overflow-y-auto" aria-labelledby="modal-title" role="dialog" aria-modal="true"
   style="display: none;">
   <div class="flex items-end justify-center min-h-screen pt-4 px-4 pb-20 text-center sm:block sm:p-0">
@@ -49,9 +61,13 @@
             </svg>
           </div>
           <div class="mt-3 text-center sm:mt-0 sm:ml-4 sm:text-left">
-            <h3 class="text-lg leading-6 font-medium text-gray-900" id="modal-title">Reset Spam Reports</h3>
+            <h3 class="text-lg leading-6 font-medium text-gray-900" id="modal-title">
+              {{ $modalTitle }}
+            </h3>
             <div class="mt-2">
-              <p class="text-sm text-gray-500">Are you sure you want to reset spam reports of this idea?</p>
+              <p class="text-sm text-gray-500">
+                {{ $modalDescription }}
+              </p>
             </div>
           </div>
         </div>
@@ -68,14 +84,13 @@
         </button>
         <button
           type="button"
-          wire:click.prevent="resetSpamReports"
+          wire:click.prevent="{{ $wireClick }}"
           class="w-full inline-flex justify-center rounded-md border border-transparent 
-          shadow-sm px-4 py-2 bg-v-blue text-base font-medium text-white hover:bg-v-blue-hover 
-          focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-v-blue sm:ml-3 sm:w-auto sm:text-sm">
-          Reset spam reports
+          shadow-sm px-4 py-2 text-base font-medium text-white focus:outline-none focus:ring-2 
+          focus:ring-offset-2 {{ $modalConfirmButtonColor }} sm:ml-3 sm:w-auto sm:text-sm">
+          {{ $modalConfirmButtonText }}
         </button>
       </div>
     </div>
   </div>
 </div>
-

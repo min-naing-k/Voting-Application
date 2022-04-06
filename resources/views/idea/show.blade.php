@@ -52,21 +52,9 @@
     :idea="$idea"
     :votesCount="$votesCount" />
 
-  @can('update', $idea)
-    <livewire:edit-idea :idea="$idea" />
-  @endcan
-
-  @can('delete', $idea)
-    <livewire:delete-idea :idea="$idea" />
-  @endcan
-
-  @auth
-    <livewire:mark-idea-as-spam :idea="$idea" />
-  @endauth
-
-  @admin
-    <livewire:reset-spam-reports :idea="$idea" />
-  @endadmin
+  @push('modals')
+    <x-idea-modals :idea="$idea" />
+  @endpush
 
   <div class="comments-container relative space-y-4 md:space-y-6 md:ml-22 mb-8 mt-1 md:pt-6">
     <div class="comment-container relative bg-white flex rounded-lg shadow mt-4">
