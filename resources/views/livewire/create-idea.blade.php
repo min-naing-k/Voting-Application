@@ -44,6 +44,4 @@
       Submit
     </button>
   </div>
-
-  <x-alert status="success" :message="session('success')" />
 </form>

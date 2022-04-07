@@ -46,7 +46,7 @@ class EditIdea extends Component
 
     $attributes = $this->validate();
     $this->idea->update($attributes);
-    $this->emit('ideaWasUpdated');
+    $this->emit('ideaWasUpdated', 'Idea was updated successfully!');
   }
 
   public function render()

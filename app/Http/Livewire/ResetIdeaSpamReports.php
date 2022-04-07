@@ -25,7 +25,7 @@ class ResetIdeaSpamReports extends Component
     $this->idea->spam_reports = 0;
     $this->idea->update();
 
-    $this->emit('resetIdeaSpamReports');
+    $this->emit('resetIdeaSpamReports', 'Idea\'s spam reports were reseted!');
   }
 
   public function render()

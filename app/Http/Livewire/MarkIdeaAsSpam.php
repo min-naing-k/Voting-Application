@@ -28,7 +28,7 @@ class MarkIdeaAsSpam extends Component
       $this->idea->update();
     }
     
-    $this->emit('ideaWasMarkedAsSpam');
+    $this->emit('ideaWasMarkedAsSpam', 'Idea was marked as spam!');
   }
 
 

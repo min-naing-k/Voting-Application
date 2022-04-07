@@ -93,6 +93,13 @@
     </div>
   </main>
 
+  @if (session('success'))
+    <x-notification-success
+      :redirect="true"
+      messageToShow="{{ session('success') }}"
+    />
+  @endif
+
   @stack('modals')
 
   @livewireScripts
