@@ -46,7 +46,9 @@ class EditIdea extends Component
 
     $attributes = $this->validate();
     $this->idea->update($attributes);
-    $this->emit('ideaWasUpdated', 'Idea was updated successfully!');
+
+    $this->emit('ideaWasUpdated');
+    $this->dispatchBrowserEvent('notify', ['message' => 'Idea was updated successfully!', 'type' => 'success']); // for toast showing
   }
 
   public function render()

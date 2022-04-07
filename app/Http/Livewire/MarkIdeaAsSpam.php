@@ -28,7 +28,8 @@ class MarkIdeaAsSpam extends Component
       $this->idea->update();
     }
     
-    $this->emit('ideaWasMarkedAsSpam', 'Idea was marked as spam!');
+    $this->emit('ideaWasMarkedAsSpam'); // for confirm modal closing
+    $this->dispatchBrowserEvent('notify', ['message' => 'Idea was marked as spam!', 'type' => 'success']); // for toast showing
   }
 
 

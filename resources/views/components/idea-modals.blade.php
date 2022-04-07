@@ -13,5 +13,5 @@
 @endauth
 
 @admin
-<livewire:reset-idea-spam-reports :idea="$idea" />
+  <livewire:reset-idea-spam-reports :idea="$idea" />
 @endadmin
