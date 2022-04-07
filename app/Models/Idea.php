@@ -43,6 +43,11 @@ class Idea extends Model
     return $this->belongsTo(Status::class);
   }
 
+  public function comments()
+  {
+    return $this->hasMany(Comment::class);
+  }
+
   public function votes()
   {
     return $this->belongsToMany(User::class, 'votes', 'idea_id', 'user_id');

@@ -86,6 +86,7 @@ class IdeasIndex extends Component
           'votes as voted_by_user' => function ($query) {
             $query->where('user_id', auth()->id());
           },
+          'comments'
         ])
         ->orderBy('id', 'desc')
         ->simplePaginate(Idea::PAGINATION_COUNT)
