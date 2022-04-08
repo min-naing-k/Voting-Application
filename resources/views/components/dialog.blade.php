@@ -1,9 +1,9 @@
 @props([
-  'align' => '', 
-  'width' => '48', 
-  'contentClasses' => '', 
-  'alignmentClasses' => '', 
-  'class' => '', 
+  'align' => '',
+  'width' => '48',
+  'contentClasses' => '',
+  'alignmentClasses' => '',
+  'class' => '',
   'event' => null
 ])
 
@@ -30,14 +30,14 @@ switch ($width) {
 
 <div
   class="relative {{ $class }}"
-  x-data="{ open: false }"
+  x-data="{ open: false, last_comment: null }"
   x-init="
     if('{{ $event }}') {
       Livewire.on('{{ $event }}', function() {
         open = false;
       });
 
-      Livewire.hook('message.processed', function(message, component) {
+      {{-- Livewire.hook('message.processed', function(message, component) {
         if(message.updateQueue[0].payload.event === 'commentWasCreated' && message.component.fingerprint.name === 'idea-comments') {
           const last_comment = document.querySelector('.comment-container:last-child');
           last_comment.scrollIntoView({ behavior: 'smooth' });
@@ -46,8 +46,16 @@ switch ($width) {
             last_comment.classList.remove('border-green-300');
           }, 5000);
         }
-      });
+      }); --}}
     }
+  "
+  @comment-was-created.window="
+    last_comment = document.querySelector('.comment-container:last-child');
+    last_comment.scrollIntoView({ behavior: 'smooth' });
+    last_comment.classList.add('border-green-300');
+    setTimeout(() => {
+      last_comment.classList.remove('border-green-300');
+    }, 5000);
   "
   @click.outside="open = false"
   @close.stop="open = false">

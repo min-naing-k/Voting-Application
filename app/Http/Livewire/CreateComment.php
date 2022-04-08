@@ -31,7 +31,7 @@ class CreateComment extends Component
     $attributes['idea_id'] = $this->idea->id;
     
     Comment::create($attributes);
-    $this->reset();
+    $this->body = null;
 
     $this->emit('commentWasCreated');
     $this->dispatchBrowserEvent('notify', ['message' => 'Comment was created successfully', 'type' => 'success']);

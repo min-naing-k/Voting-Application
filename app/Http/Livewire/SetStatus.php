@@ -23,8 +23,9 @@ class SetStatus extends Component
     $this->idea->update();
 
     if($this->notifyAllVoters) {
-      NotifyAllVoters::dispatch($this->idea);
-      // dispatch(new NotifyAllVoters($this->idea));
+      if($this->idea->votes_count > 0) {
+        NotifyAllVoters::dispatch($this->idea);
+      }
     }
 
     $this->emit('updateStatus');

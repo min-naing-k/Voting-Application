@@ -14,7 +14,7 @@
     @auth
       <form wire:submit.prevent="createComment" action="#" method="POST" class="space-y-4">
         <div>
-          <textarea wire:model="body" autofocus x-ref="comment" name="post_comment" id="post_comment" cols="30" rows="4"
+          <textarea wire:model.defer="body" autofocus x-ref="comment" name="post_comment" id="post_comment" cols="30" rows="4"
             class="w-full text-sm bg-gray-100 rounded-md placeholder:text-gray-400 
               border border-gray-200 foucs:border-blue transition duration-150 ease-in px-4 py-2"
             placeholder="Go ahead, don't be shy. Share your thoughts..."></textarea>

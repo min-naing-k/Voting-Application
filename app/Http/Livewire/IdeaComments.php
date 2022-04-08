@@ -19,6 +19,7 @@ class IdeaComments extends Component
   public function commentWasCreated()
   {
     $this->idea->refresh();
+    $this->dispatchBrowserEvent('comment-was-created');
   }
 
   public function render()
