@@ -9,15 +9,22 @@ class IdeaComments extends Component
 {
   public $idea;
 
+  protected $listeners = ['commentWasCreated'];
+
   public function mount(Idea $idea)
   {
     $this->idea = $idea;
   }
 
+  public function commentWasCreated()
+  {
+    $this->idea->refresh();
+  }
+
   public function render()
   {
     return view('livewire.idea-comments', [
-      'comments' => $this->idea->comments->load('user'),
+      'comments' => $this->idea->comments->load(['user', 'idea']),
     ]);
   }
 }

@@ -13,6 +13,13 @@
         <div class="flex items-center text-xs font-semibold space-x-2 text-gray-400">
           <div class="font-bold text-gray-900">{{ $comment->user->name }}</div>
           <div>&bull;</div>
+          @if ($comment->user_id === $comment->idea->user_id)
+            <abbr
+              class="py-1 px-3 bg-gray-100 rounded-full text-gray-400 text-xs border hover:border-gray-300 
+                transition ease-in duration-150 cursor-pointer no-underline"
+              title="Original Poster">OP</abbr>
+            <div>&bull;</div>
+          @endif
           <div>{{ $comment->created_at->diffForHumans() }}</div>
         </div>
         <div class="flex items-center space-x-2">

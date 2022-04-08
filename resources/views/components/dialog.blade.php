@@ -1,4 +1,11 @@
-@props(['align' => '', 'width' => '48', 'contentClasses' => '', 'alignmentClasses' => '', 'class' => '', 'event' => null])
+@props([
+  'align' => '', 
+  'width' => '48', 
+  'contentClasses' => '', 
+  'alignmentClasses' => '', 
+  'class' => '', 
+  'event' => null
+])
 
 @php
 switch ($align) {
@@ -37,7 +44,15 @@ switch ($width) {
     {{ $trigger }}
   </div>
 
-  <div x-show="open"
+  <div 
+  x-show="
+    open;
+    $nextTick(() => {
+      if($refs.comment) {
+        $refs.comment.focus();
+      }
+    });
+  "
     x-transition:enter="transition ease-out duration-150"
     x-transition:enter-start="transform opacity-0 scale-50"
     x-transition:enter-end="transform opacity-100 scale-100"

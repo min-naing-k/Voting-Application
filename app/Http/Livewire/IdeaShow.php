@@ -10,7 +10,7 @@ class IdeaShow extends Component
   public Idea $idea;
   public $votesCount, $hasVoted;
 
-  protected $listeners = ['updateStatus', 'ideaWasUpdated', 'ideaWasMarkedAsSpam', 'resetIdeaSpamReports'];
+  protected $listeners = ['updateStatus', 'ideaWasUpdated', 'ideaWasMarkedAsSpam', 'resetIdeaSpamReports', 'commentWasCreated'];
 
   public function mount($votesCount)
   {
@@ -34,6 +34,11 @@ class IdeaShow extends Component
   }
 
   public function resetIdeaSpamReports()
+  {
+    $this->idea->refresh();
+  }
+
+  public function commentWasCreated()
   {
     $this->idea->refresh();
   }

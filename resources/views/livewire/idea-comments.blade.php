@@ -1,8 +1,11 @@
-@if ($idea->comments->isNotEmpty())
+@if ($comments->isNotEmpty())
   <div class="comments-container relative space-y-4 md:space-y-6 md:ml-22 mb-8 mt-1 md:pt-6">
 
     @foreach ($comments as $comment)
-      <livewire:idea-comment :comment="$comment" />
+      <livewire:idea-comment
+        :comment="$comment"
+        :key="$comment->id"
+      />
     @endforeach
 
     {{-- <div class="comment-container relative is-admin bg-white flex rounded-lg shadow mt-4">
