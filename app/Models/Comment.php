@@ -11,6 +11,8 @@ class Comment extends Model
 
   protected $guarded = ['id'];
 
+  protected $perPage = 15;
+
   public function user()
   {
     return $this->belongsTo(User::class);

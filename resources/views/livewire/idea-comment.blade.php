@@ -6,7 +6,7 @@
       </a>
     </div>
     <div class="ml-4 flex-1">
-      <div class="text-gray-600 mt-3 line-clamp-3">
+      <div class="text-gray-600 mt-3">
         {{ $comment->body }}
       </div>
       <div class="flex items-center justify-between mt-6">

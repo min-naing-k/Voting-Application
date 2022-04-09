@@ -60,4 +60,17 @@
 
   <x-notification-success />
 
+  @push('script')
+    <script>
+      Livewire.hook('message.processed', function(message, component) {
+        if(['gotoPage', 'nextPage', 'previousPage'].includes(message.updateQueue[0].method)) {
+          // const first_comment = document.querySelector('.comment-container:first-child');
+          // first_comment.scrollIntoView({ behavior: 'smooth' });
+          const button_container = document.querySelector('.buttons-container');
+          button_container.scrollIntoView({ behavior: 'smooth' });
+        }
+      });
+    </script>
+  @endpush
+
 </x-app-layout>

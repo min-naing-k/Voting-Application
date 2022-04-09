@@ -29,7 +29,7 @@
             <div>&bull;</div>
             <div>{{ $idea->category->name }}</div>
             <div>&bull;</div>
-            <div class="text-gray-900">{{ $idea->comments->count() }} comments</div>
+            <div class="text-gray-900">{{ $idea->comments()->count() }} comments</div>
           </div>
           <div class="flex items-center justify-between space-x-2 mt-8 md:mt-0">
             <div class="flex items-center md:hidden">

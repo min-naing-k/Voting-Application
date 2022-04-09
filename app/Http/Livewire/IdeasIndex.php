@@ -89,7 +89,7 @@ class IdeasIndex extends Component
           'comments'
         ])
         ->orderBy('id', 'desc')
-        ->simplePaginate(Idea::PAGINATION_COUNT)
+        ->simplePaginate()
         ->withQueryString(),
     ]);
   }

@@ -6,9 +6,13 @@
   display: none !important;
 }
 
-.idea-container:last-of-type {
+/* .idea-container:last-of-type {
   @apply mb-22 !important;
-}
+} */
+
+/* .comment-container:last-of-type {
+  @apply mb-22 !important;
+} */
 
 /* Vertical line to the left of the comments */
 .comments-container::before {
@@ -29,30 +33,24 @@
   }
 }
 
-.comment-container:last-of-type {
-  @apply mb-22 !important;
-}
-
 .comment-container::before {
   content: "";
   position: absolute;
   top: 50%;
   left: -40px;
-  transform: translateY(-50%);
   width: 29px;
   height: 3px;
   background: #edf0f5;
-  /* opacity: .07; */
 }
 
 .comment-container:last-child::after {
   content: "";
   position: absolute;
-  top: 51%;
-  left: -40px;
+  top: calc(50% + 3px);
+  left: -41px;
   display: block;
-  width: 3px;
-  height: calc(100% - 51%);
+  width: 4px;
+  height: 50%;
   background: theme("colors.gray-background");
 }
 
