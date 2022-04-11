@@ -62,6 +62,9 @@
                   </button>
                 @endcan
                 <button
+                  @click.prevent="
+                    Livewire.emit('setCommentAsSpam', {{ $comment->id }});
+                  "
                   type="button"
                   class="hover:bg-gray-100 px-5 py-3 block w-full text-left font-semibold transition duration-150 ease-in">
                   Report spam

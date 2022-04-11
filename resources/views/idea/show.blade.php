@@ -60,6 +60,8 @@
     <livewire:edit-comment />
 
     <livewire:delete-comment />
+
+    <livewire:mark-comment-as-spam />
   @endpush
 
   <x-notification />

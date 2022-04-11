@@ -22,4 +22,17 @@ class Comment extends Model
   {
     return $this->belongsTo(Idea::class);
   }
+
+  
+  public function reports()
+  {
+    return $this->belongsToMany(User::class, 'comment_spam', 'comment_id', 'user_id')
+      ->withTimestamps();
+  }
+
+  public function isMarkAsSpamByUser(User $user)
+  {
+    return CommentSpam::where('comment_id', $this->id)
+      ->where('user_id', $user->id)->exists();
+  }
 }
