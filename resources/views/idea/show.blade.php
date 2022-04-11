@@ -62,6 +62,8 @@
     <livewire:delete-comment />
 
     <livewire:mark-comment-as-spam />
+
+    <livewire:reset-comment-spam-reports />
   @endpush
 
   <x-notification />

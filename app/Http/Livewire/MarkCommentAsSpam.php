@@ -3,7 +3,6 @@
 namespace App\Http\Livewire;
 
 use App\Models\Comment;
-use App\Models\CommentSpam;
 use Livewire\Component;
 
 class MarkCommentAsSpam extends Component
@@ -26,6 +25,7 @@ class MarkCommentAsSpam extends Component
       $this->comment->increment('spam_reports');
     }
 
+    $this->emit('refreshComment');
     $this->emit('notify', ['message' => 'Comment was marked spam.', 'type' => 'success']);
   }
 

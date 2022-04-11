@@ -1,4 +1,4 @@
-<div 
+<div
   x-data="{ lastComment: false }"
   class="comment-container relative bg-white flex rounded-lg shadow mt-4 border border-transparent transition ease-in duration-500">
   <div class="flex flex-1 px-4 py-6">
@@ -23,6 +23,11 @@
             <div>&bull;</div>
           @endif
           <div>{{ $comment->created_at->diffForHumans() }}</div>
+          @admin
+          @if ($comment->spam_reports > 0)
+          <div class="text-v-red">(Reports: {{ $comment->spam_reports }})</div>              
+          @endif
+          @endadmin
         </div>
         <div class="flex items-center">
           @auth
@@ -41,8 +46,8 @@
                 @can('update', $comment)
                   <button
                     @click.prevent="
-                      Livewire.emit('editSetComment', {{ $comment->id }});
-                    "
+                              Livewire.emit('editSetComment', {{ $comment->id }});
+                            "
                     type="button"
                     class="hover:bg-gray-100 px-5 py-3 block w-full text-left font-semibold transition duration-150 ease-in">
                     Edit a comment
@@ -51,11 +56,11 @@
                 @can('delete', $comment)
                   <button
                     @click.prevent="
-                      if(!document.querySelector('.comment-container:first-child').nextElementSibling) {
-                        lastComment = true;
-                      }
-                      Livewire.emit('deleteSetComment', { lastComment: lastComment, commentId: {{ $comment->id }} });
-                    "
+                              if(!document.querySelector('.comment-container:first-child').nextElementSibling) {
+                                lastComment = true;
+                              }
+                              Livewire.emit('deleteSetComment', { lastComment: lastComment, commentId: {{ $comment->id }} });
+                            "
                     type="button"
                     class="hover:bg-gray-100 px-5 py-3 block w-full text-left font-semibold transition duration-150 ease-in">
                     Delete a comment
@@ -63,12 +68,24 @@
                 @endcan
                 <button
                   @click.prevent="
-                    Livewire.emit('setCommentAsSpam', {{ $comment->id }});
-                  "
+                        Livewire.emit('setCommentAsSpam', {{ $comment->id }});
+                      "
                   type="button"
                   class="hover:bg-gray-100 px-5 py-3 block w-full text-left font-semibold transition duration-150 ease-in">
-                  Report spam
+                  Report
                 </button>
+                @admin
+                @if ($comment->spam_reports > 0)
+                  <button
+                    @click.prevent="
+                      Livewire.emit('setResetCommentReports', {{ $comment->id }});
+                    "
+                    type="button"
+                    class="hover:bg-gray-100 px-5 py-3 block w-full text-left font-semibold transition duration-150 ease-in">
+                    Reset reports
+                  </button>
+                @endif
+                @endadmin
               </x-slot>
             </x-dropdown>
           @endauth
