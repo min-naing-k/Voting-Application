@@ -7,11 +7,18 @@ use Livewire\Component;
 
 class IdeaComment extends Component
 {
-  public $comment;
+  public $comment, $comments;
+
+  protected $listeners = ['refreshComment'];
 
   public function mount(Comment $comment)
   {
     $this->comment = $comment;
+  }
+
+  public function refreshComment()
+  {
+    $this->comment->refresh();
   }
 
   public function render()

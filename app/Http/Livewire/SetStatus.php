@@ -28,7 +28,15 @@ class SetStatus extends Component
       }
     }
 
-    $this->emit('updateStatus');
+    $this->emit('refreshIdea');
+    $this->emit('notify', ['message' => 'Idea\'s Status was updated successfully! ', 'type' => 'success']);
+  }
+
+  public function resetErrorAndData()
+  {
+    $this->resetErrorBag();
+    $this->status = $this->idea->status_id;
+    $this->notifyAllVoters = null;
   }
 
   public function render()

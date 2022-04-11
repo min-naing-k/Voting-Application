@@ -49,27 +49,55 @@
   </div>
 
   <livewire:idea-show
-  :idea="$idea"
-  :votesCount="$votesCount" />
-  
+    :idea="$idea"
+    :votesCount="$votesCount" />
+
   <livewire:idea-comments :idea="$idea" />
-  
+
   @push('modals')
     <x-idea-modals :idea="$idea" />
+    
+    <livewire:edit-comment />
+
+    <livewire:delete-comment />
   @endpush
 
-  <x-notification-success />
+  <x-notification />
 
   @push('script')
     <script>
       Livewire.hook('message.processed', function(message, component) {
-        if(['gotoPage', 'nextPage', 'previousPage'].includes(message.updateQueue[0].method)) {
-          // const first_comment = document.querySelector('.comment-container:first-child');
-          // first_comment.scrollIntoView({ behavior: 'smooth' });
+        if (['gotoPage', 'nextPage', 'previousPage'].includes(message.updateQueue[0].method)) {
           const button_container = document.querySelector('.buttons-container');
-          button_container.scrollIntoView({ behavior: 'smooth' });
+          button_container.scrollIntoView({
+            behavior: 'smooth'
+          });
         }
       });
+
+      window.addEventListener('comment-was-created', function(event) {
+        last_comment = document.querySelector('.comment-container:last-child');
+        last_comment.scrollIntoView({
+          behavior: 'smooth'
+        });
+        last_comment.classList.add('!border-green-300');
+        setTimeout(() => {
+          last_comment.classList.remove('!border-green-300');
+        }, 5000);
+      });
+
+      // Livewire.hook('message.processed', function(message, component) {
+      //   if (message.updateQueue[0].payload.event === 'commentWasCreated' && message.component.fingerprint.name === 'idea-comments') {
+      //     const last_comment = document.querySelector('.comment-container:last-child');
+      //     last_comment.scrollIntoView({
+      //       behavior: 'smooth'
+      //     });
+      //     last_comment.classList.add('border-green-300');
+      //     setTimeout(() => {
+      //       last_comment.classList.remove('border-green-300');
+      //     }, 5000);
+      //   }
+      // });
     </script>
   @endpush
 

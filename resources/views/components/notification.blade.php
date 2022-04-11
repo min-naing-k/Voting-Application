@@ -4,7 +4,7 @@
 ])
 
 <div
-  x-data="{ 
+  x-data="{
     open: false,
     messageToShow: '',
     type: 'success',
@@ -24,14 +24,15 @@
   x-transition:leave-start="opacity-100 transform translate-y-0"
   x-transition:leave-end="opacity-75 transform translate-y-8"
   @keydown.escape.window="open = false"
-  @notify.window="
-    showNotification($event.detail.message);
-    type = $event.detail.type;
-  "
   x-init="
     if('{{ $redirect }}') {
       $nextTick(() => {
         showNotification('{{ $messageToShow }}');
+      });
+    }else {
+      Livewire.on('notify', function(data) {
+        showNotification(data.message);
+        type = data.type;
       });
     }
   "

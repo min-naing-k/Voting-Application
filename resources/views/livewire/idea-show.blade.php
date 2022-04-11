@@ -10,15 +10,17 @@
         </h4>
       </div>
       <div class="md:ml-4 flex-1">
-        <h4 class="hidden md:block text-xl font-semibold">
-          {{ $idea->title }}
-        </h4>
-        <div class="text-gray-600 mt-3">
+        <div class="flex justify-between items-center">
+          <h4 class="hidden md:block text-xl font-semibold">
+            {{ $idea->title }}
+          </h4>
           @admin
           @if ($idea->spam_reports > 0)
-            <p class="text-red-500 text-sm font-semibold mb-2">Spam Reports: {{ $idea->spam_reports }}</p>
+            <p class="text-red-500 text-xs font-semibold mb-2">Spam Reports: {{ $idea->spam_reports }}</p>
           @endif
           @endadmin
+        </div>
+        <div class="text-gray-600 mt-3">
           {{ $idea->description }}
         </div>
         <div class="flex flex-col md:flex-row md:items-center justify-between mt-3 md:mt-6">
@@ -75,7 +77,7 @@
                   <x-slot name="content">
                     @can('update', $idea)
                       <button
-                        @click.prevent="$dispatch('open-edit-modal')"
+                        @click.prevent="$dispatch('open-edit-idea-modal')"
                         type="button"
                         class="hover:bg-gray-100 px-5 py-3 block w-full text-left font-semibold transition duration-150 ease-in">
                         Edit an idea

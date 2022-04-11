@@ -1,8 +1,7 @@
 <x-dialog
   class="hidden md:block"
   align="left"
-  width="w-104"
-  event="commentWasCreated">
+  width="w-104">
   <x-slot name="trigger">
     <button type="button"
       class="flex items-center justify-center w-32 h-11 text-xs bg-v-blue text-white
@@ -14,10 +13,13 @@
     @auth
       <form wire:submit.prevent="createComment" action="#" method="POST" class="space-y-4">
         <div>
-          <textarea wire:model.defer="body" autofocus x-ref="comment" name="post_comment" id="post_comment" cols="30" rows="4"
+          <textarea wire:model.defer="body" x-ref="comment" name="post_comment" id="post_comment" cols="30" rows="4"
             class="w-full text-sm bg-gray-100 rounded-md placeholder:text-gray-400 
               border border-gray-200 foucs:border-blue transition duration-150 ease-in px-4 py-2"
             placeholder="Go ahead, don't be shy. Share your thoughts..."></textarea>
+          @error('body')
+            <p class="text-red-500 text-xs font-normal">{{ $message }}</p>
+          @enderror
         </div>
         <div class="flex items-center space-x-3">
           <button type="submit"

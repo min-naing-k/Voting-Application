@@ -19,7 +19,7 @@
         @foreach ($statuses as $status)
           <div>
             <label class="inline-flex items-center">
-              <input wire:model="status" type="radio" name="radio_direct"
+              <input wire:model.defer="status" type="radio" name="radio_direct"
                 class="bg-gray-100 border-gray-300 {{ $status->slug . '-radio' }} focus:ring-opacity-70 transition duration-150 ease-in" 
                 value="{{ $status->id }}" />
               <span class="ml-2 select-none">{{ $status->name }}</span>
@@ -49,7 +49,7 @@
       </div>
       <div>
         <label class="inline-flex items-center">
-          <input wire:model="notifyAllVoters" type="checkbox" name="notify_users" class="bg-gray-100 border-gray-200 rounded transition duration-150 ease-in" />
+          <input wire:model.defer="notifyAllVoters" type="checkbox" name="notify_users" class="bg-gray-100 border-gray-200 rounded transition duration-150 ease-in" />
           <span class="ml-2 select-none">Notify all voters</span>
         </label>
       </div>

@@ -1,6 +1,6 @@
 @props([
-  'eventToOpenModal',
-  'eventToCloseModal' => null,
+  'eventToOpenModal' => null,
+  'livewireEventToOpenModal' => null,
   'modalTitle',
   'modalDescription',
   'modalConfirmButtonText',
@@ -11,16 +11,23 @@
 <div
   x-data="{ open: false }"
   x-show="open"
-  {{ '@' . $eventToOpenModal }}.window="
-    open = true;
-    $nextTick(() => { $refs.cancelButton.focus(); });
-  "
+  @if ($eventToOpenModal)
+    {{ '@' . $eventToOpenModal }}.window="
+      open = true;
+      $nextTick(() => { $refs.cancelButton.focus(); });
+    "
+  @endif
   x-init="
-    if('{{ $eventToCloseModal }}') {
-      Livewire.on('{{ $eventToCloseModal }}', function() {
-        open = false;
+    if('{{ $livewireEventToOpenModal }}') {
+      Livewire.on('{{ $livewireEventToOpenModal }}', function() {
+        $nextTick(() => { $refs.cancelButton.focus(); });
+        open = true;
       });
     }
+
+    Livewire.on('notify', function(data) {
+      open = false;
+    });
   "
   @keydown.escape.window="open = false"
   class="fixed z-20 inset-0 overflow-y-auto" aria-labelledby="modal-title" role="dialog" aria-modal="true"

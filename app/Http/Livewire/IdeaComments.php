@@ -12,18 +12,29 @@ class IdeaComments extends Component
 
   public $idea;
 
-  protected $listeners = ['commentWasCreated'];
+  protected $listeners = ['gotoNewComment', 'gotoPreviousCommentPage', 'refreshComments'];
 
   public function mount(Idea $idea)
   {
     $this->idea = $idea;
   }
 
-  public function commentWasCreated()
+  public function gotoNewComment()
   {
     $this->idea->refresh();
     $this->gotoPage($this->idea->comments()->paginate()->lastPage(), 'comment-page');
     $this->dispatchBrowserEvent('comment-was-created');
+  }
+
+  public function gotoPreviousCommentPage()
+  {
+    $this->idea->refresh();
+    $this->previousPage('comment-page');
+  }
+
+  public function refreshComments()
+  {
+    $this->idea->refresh();
   }
 
   public function render()

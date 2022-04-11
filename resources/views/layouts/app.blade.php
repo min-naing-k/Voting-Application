@@ -20,7 +20,7 @@
   @livewireStyles
 </head>
 
-<body class="font-sans text-gray-900 bg-gray-background text-sm">
+<body class="font-sans text-gray-900 bg-gray-background text-sm min-h-screen">
   <nav class="bg-white shadow-sm">
     <header class="container mx-auto flex items-center justify-between px-2 py-4 md:px-4">
       <a href="#">
@@ -94,7 +94,7 @@
   </main>
 
   @if (session('success'))
-    <x-notification-success
+    <x-notification
       :redirect="true"
       messageToShow="{{ session('success') }}"
     />

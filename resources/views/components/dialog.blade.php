@@ -3,8 +3,7 @@
   'width' => '48',
   'contentClasses' => '',
   'alignmentClasses' => '',
-  'class' => '',
-  'event' => null
+  'class' => ''
 ])
 
 @php
@@ -30,40 +29,18 @@ switch ($width) {
 
 <div
   class="relative {{ $class }}"
-  x-data="{ open: false, last_comment: null }"
+  x-data="{ open: false }"
   x-init="
-    if('{{ $event }}') {
-      Livewire.on('{{ $event }}', function() {
-        open = false;
-      });
-
-      {{-- Livewire.hook('message.processed', function(message, component) {
-        if(message.updateQueue[0].payload.event === 'commentWasCreated' && message.component.fingerprint.name === 'idea-comments') {
-          const last_comment = document.querySelector('.comment-container:last-child');
-          last_comment.scrollIntoView({ behavior: 'smooth' });
-          last_comment.classList.add('border-green-300');
-          setTimeout(() => {
-            last_comment.classList.remove('border-green-300');
-          }, 5000);
-        }
-      }); --}}
-    }
+    Livewire.on('notify', function() {
+      open = false;
+    });
   "
-  @comment-was-created.window="
-    last_comment = document.querySelector('.comment-container:last-child');
-    last_comment.scrollIntoView({ behavior: 'smooth' });
-    last_comment.classList.add('!border-green-300');
-    setTimeout(() => {
-      last_comment.classList.remove('!border-green-300');
-    }, 5000);
-  "
-  @click.outside="open = false"
-  @close.stop="open = false">
-  <div @click="open = ! open">
+  @click.outside="open = false" @close.stop="open = false">
+  <div @click="open = ! open; $wire.resetErrorAndData()">
     {{ $trigger }}
   </div>
 
-  <div 
+  <div
   x-show="
     open;
     $nextTick(() => {
@@ -80,7 +57,7 @@ switch ($width) {
     x-transition:leave-end="transform opacity-0 scale-50"
     class="absolute z-50 mt-2 {{ $width }} text-left font-semibold text-sm bg-white shadow-dialog rounded-lg px-4 py-6 {{ $alignmentClasses }} {{ $contentClasses }}"
     style="display: none;"
-    @keydown.escape.window="open = false">
+    @keydown.escape.window="open = false; $wire.resetErrorAndData()">
     {{ $content }}
   </div>
 </div>

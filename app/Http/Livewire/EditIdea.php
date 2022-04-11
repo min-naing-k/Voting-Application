@@ -4,7 +4,6 @@ namespace App\Http\Livewire;
 
 use App\Models\Idea;
 use Livewire\Component;
-use App\Models\Category;
 use Illuminate\Http\Response;
 
 class EditIdea extends Component
@@ -30,7 +29,7 @@ class EditIdea extends Component
     $this->description = $this->idea->description;
   }
 
-  public function clearError()
+  public function resetErrorAndData()
   {
     $this->title = $this->idea->title;
     $this->category_id = $this->idea->category_id;
@@ -47,8 +46,8 @@ class EditIdea extends Component
     $attributes = $this->validate();
     $this->idea->update($attributes);
 
-    $this->emit('ideaWasUpdated');
-    $this->dispatchBrowserEvent('notify', ['message' => 'Idea was updated successfully!', 'type' => 'success']); // for toast showing
+    $this->emit('refreshIdea');
+    $this->emit('notify', ['message' => 'Idea was updated successfully!', 'type' => 'success']);
   }
 
   public function render()

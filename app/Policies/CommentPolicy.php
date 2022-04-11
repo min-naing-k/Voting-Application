@@ -53,7 +53,7 @@ class CommentPolicy
      */
     public function update(User $user, Comment $comment)
     {
-        //
+      return $user->id === (int) $comment->user_id;
     }
 
     /**
@@ -65,7 +65,11 @@ class CommentPolicy
      */
     public function delete(User $user, Comment $comment)
     {
-        //
+      if($user->hasRole('admin')) {
+        return true;
+      }
+
+      return $user->id === (int) $comment->user_id;
     }
 
     /**

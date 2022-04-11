@@ -3,8 +3,8 @@
     <div class="comments-container relative space-y-4 md:space-y-6 md:ml-22 mb-8 mt-1 md:pt-6">
       @foreach ($comments as $comment)
         <livewire:idea-comment
-          :comment="$comment"
-          :key="$comment->id" />
+        :comment="$comment"
+        :key="$comment->id" />
       @endforeach
     </div>
     <div class="my-6 md:ml-22">

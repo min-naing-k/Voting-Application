@@ -1,4 +1,9 @@
-@props(['align' => '', 'width' => '48', 'contentClasses' => 'py-1 bg-white', 'alignmentClasses' => ''])
+@props([
+  'align' => '',
+  'width' => '48',
+  'contentClasses' => 'py-1 bg-white',
+  'alignmentClasses' => ''
+])
 
 @php
 switch ($align) {

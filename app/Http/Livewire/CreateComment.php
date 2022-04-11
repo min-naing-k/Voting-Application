@@ -33,8 +33,14 @@ class CreateComment extends Component
     Comment::create($attributes);
     $this->body = null;
 
-    $this->emit('commentWasCreated');
-    $this->dispatchBrowserEvent('notify', ['message' => 'Comment was created successfully', 'type' => 'success']);
+    $this->emit('gotoNewComment');
+    $this->emit('notify', ['message' => 'Comment was created successfully', 'type' => 'success']);
+  }
+
+  public function resetErrorAndData()
+  {
+    $this->resetErrorBag();
+    $this->body = null;
   }
 
   public function render()

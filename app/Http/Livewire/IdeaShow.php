@@ -10,7 +10,7 @@ class IdeaShow extends Component
   public Idea $idea;
   public $votesCount, $hasVoted;
 
-  protected $listeners = ['updateStatus', 'ideaWasUpdated', 'ideaWasMarkedAsSpam', 'resetIdeaSpamReports', 'commentWasCreated'];
+  protected $listeners = ['refreshIdea'];
 
   public function mount($votesCount)
   {
@@ -18,27 +18,7 @@ class IdeaShow extends Component
     $this->hasVoted = $this->idea->isVotedByUser(auth()->user());
   }
 
-  public function updateStatus()
-  {
-    $this->idea->refresh();
-  }
-
-  public function ideaWasUpdated()
-  {
-    $this->idea->refresh();
-  }
-
-  public function ideaWasMarkedAsSpam()
-  {
-    $this->idea->refresh();
-  }
-
-  public function resetIdeaSpamReports()
-  {
-    $this->idea->refresh();
-  }
-
-  public function commentWasCreated()
+  public function refreshIdea()
   {
     $this->idea->refresh();
   }
