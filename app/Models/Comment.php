@@ -23,6 +23,9 @@ class Comment extends Model
     return $this->belongsTo(Idea::class);
   }
 
+  public function status() {
+    return $this->belongsTo(Status::class);
+  }
   
   public function reports()
   {

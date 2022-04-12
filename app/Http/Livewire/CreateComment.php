@@ -29,6 +29,7 @@ class CreateComment extends Component
     $attributes = $this->validate();
     $attributes['user_id'] = auth()->id();
     $attributes['idea_id'] = $this->idea->id;
+    $attributes['status_id'] = $this->idea->status_id;
     
     Comment::create($attributes);
     $this->body = null;

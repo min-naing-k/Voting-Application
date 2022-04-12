@@ -28,7 +28,7 @@
         @endforeach
       </div>
       <div>
-        <textarea name="update_comment" id="update_comment" cols="30" rows="3"
+        <textarea wire:model.defer="body" name="update_comment" id="update_comment" cols="30" rows="3"
           class="w-full bg-gray-100 border-gray-200 text-sm placeholder:text-gray-400 rounded-md transition duration-150 ease-in"
           placeholder="Add an update comment (optional)"></textarea>
       </div>

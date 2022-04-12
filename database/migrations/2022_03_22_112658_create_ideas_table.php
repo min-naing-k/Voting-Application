@@ -22,6 +22,7 @@ class CreateIdeasTable extends Migration
       $table->string('slug')->nullable();
       $table->text('description');
       $table->unsignedBigInteger('votes_count')->default(0);
+      $table->integer('spam_reports')->default(0);
       $table->timestamps();
     });
   }

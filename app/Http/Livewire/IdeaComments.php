@@ -41,7 +41,7 @@ class IdeaComments extends Component
   {
     return view('livewire.idea-comments', [
       'comments' => $this->idea->comments()
-        ->with(['user', 'idea'])
+        ->with(['user.roles', 'idea', 'status'])
         ->paginate(15, ['*'], 'comment-page')
         ->withQueryString(),
     ]);

@@ -685,15 +685,6 @@ select {
 .-top-104 {
   top: -26rem;
 }
-.-left-7\.5 {
-  left: -1.875rem;
-}
-.top-6 {
-  top: 1.5rem;
-}
-.-left-7 {
-  left: -1.75rem;
-}
 .z-0 {
   z-index: 0;
 }
@@ -752,6 +743,9 @@ select {
 .mt-4 {
   margin-top: 1rem;
 }
+.mt-1 {
+  margin-top: 0.25rem;
+}
 .mt-3 {
   margin-top: 0.75rem;
 }
@@ -766,9 +760,6 @@ select {
 }
 .mb-8 {
   margin-bottom: 2rem;
-}
-.mt-1 {
-  margin-top: 0.25rem;
 }
 .mb-4 {
   margin-bottom: 1rem;
@@ -796,9 +787,6 @@ select {
 }
 .-mr-2 {
   margin-right: -0.5rem;
-}
-.ml-8 {
-  margin-left: 2rem;
 }
 .block {
   display: block;
@@ -919,9 +907,6 @@ select {
 }
 .w-1\/3 {
   width: 33.333333%;
-}
-.w-44 {
-  width: 11rem;
 }
 .max-w-custom {
   max-width: 64.5rem;
@@ -1380,17 +1365,17 @@ select {
   font-size: 0.75rem;
   line-height: 1rem;
 }
-.text-lg {
-  font-size: 1.125rem;
-  line-height: 1.75rem;
+.text-xxs {
+  font-size: 0.625rem;
+  line-height: 1rem;
 }
 .text-xl {
   font-size: 1.25rem;
   line-height: 1.75rem;
 }
-.text-xxs {
-  font-size: 0.625rem;
-  line-height: 1rem;
+.text-lg {
+  font-size: 1.125rem;
+  line-height: 1.75rem;
 }
 .text-2xl {
   font-size: 1.5rem;
@@ -1448,6 +1433,10 @@ select {
   --tw-text-opacity: 1;
   color: rgb(255 255 255 / var(--tw-text-opacity));
 }
+.text-v-blue {
+  --tw-text-opacity: 1;
+  color: rgb(50 138 241 / var(--tw-text-opacity));
+}
 .text-gray-600 {
   --tw-text-opacity: 1;
   color: rgb(75 85 99 / var(--tw-text-opacity));
@@ -1472,17 +1461,9 @@ select {
   --tw-text-opacity: 1;
   color: rgb(234 179 8 / var(--tw-text-opacity));
 }
-.text-green-600 {
-  --tw-text-opacity: 1;
-  color: rgb(22 163 74 / var(--tw-text-opacity));
-}
 .text-red-600 {
   --tw-text-opacity: 1;
   color: rgb(220 38 38 / var(--tw-text-opacity));
-}
-.text-v-blue {
-  --tw-text-opacity: 1;
-  color: rgb(50 138 241 / var(--tw-text-opacity));
 }
 .text-gray-200 {
   --tw-text-opacity: 1;
@@ -1492,13 +1473,17 @@ select {
   --tw-text-opacity: 1;
   color: rgb(209 213 219 / var(--tw-text-opacity));
 }
+.text-gray-800 {
+  --tw-text-opacity: 1;
+  color: rgb(31 41 55 / var(--tw-text-opacity));
+}
 .text-indigo-600 {
   --tw-text-opacity: 1;
   color: rgb(79 70 229 / var(--tw-text-opacity));
 }
-.text-gray-800 {
+.text-green-600 {
   --tw-text-opacity: 1;
-  color: rgb(31 41 55 / var(--tw-text-opacity));
+  color: rgb(22 163 74 / var(--tw-text-opacity));
 }
 .text-green-900 {
   --tw-text-opacity: 1;
@@ -1619,12 +1604,6 @@ select {
 [x-cloak] {
   display: none !important;
 }
-/* .idea-container:last-of-type {
-  @apply mb-22 !important;
-} */
-/* .comment-container:last-of-type {
-  @apply mb-22 !important;
-} */
 /* Vertical line to the left of the comments */
 .comments-container::before {
   content: "";
@@ -1661,7 +1640,7 @@ select {
   height: 50%;
   background: #f7f8fc;
 }
-.is-admin {
+.is-status-update {
   border-width: 1px;
   border-image-source: linear-gradient(266deg, #21c8f6 98%, #637bff -52%);
   border-image-slice: 1;
@@ -1671,7 +1650,7 @@ select {
   background-clip: content-box, border-box;
   border-color: transparent;
 }
-.is-admin::after {
+.is-status-update > div::after {
   content: "";
   position: absolute;
   top: 50%;
@@ -1682,32 +1661,35 @@ select {
   border-radius: 38px;
   border: 7px solid white;
   box-shadow: 4px 4px 15px 0 rgb(36 37 38 / 8%);
-  background: #8b60ed;
-  opacity: 1;
+  z-index: 1;
 }
 .open {
   --tw-bg-opacity: 1;
   background-color: rgb(229 231 235 / var(--tw-bg-opacity));
 }
-.considering {
+.status-open > div::after {
+  --tw-bg-opacity: 1;
+  background-color: rgb(209 213 219 / var(--tw-bg-opacity));
+}
+.considering, .status-considering > div::after {
   --tw-bg-opacity: 1;
   background-color: rgb(139 96 237 / var(--tw-bg-opacity));
   --tw-text-opacity: 1;
   color: rgb(255 255 255 / var(--tw-text-opacity));
 }
-.in-progress {
+.in-progress, .status-in-progress > div::after {
   --tw-bg-opacity: 1;
   background-color: rgb(255 199 60 / var(--tw-bg-opacity));
   --tw-text-opacity: 1;
   color: rgb(255 255 255 / var(--tw-text-opacity));
 }
-.implemented {
+.implemented, .status-implemented > div::after {
   --tw-bg-opacity: 1;
   background-color: rgb(26 171 139 / var(--tw-bg-opacity));
   --tw-text-opacity: 1;
   color: rgb(255 255 255 / var(--tw-text-opacity));
 }
-.closed {
+.closed, .status-closed > div::after {
   --tw-bg-opacity: 1;
   background-color: rgb(236 69 79 / var(--tw-bg-opacity));
   --tw-text-opacity: 1;

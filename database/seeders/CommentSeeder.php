@@ -17,7 +17,8 @@ class CommentSeeder extends Seeder
       foreach(range(1, 150) as $item) {
         Comment::factory()->create([
           'user_id' => 1,
-          'idea_id' => 102
+          'idea_id' => 100,
+          'status_id' => 1
         ]);
       }
     }

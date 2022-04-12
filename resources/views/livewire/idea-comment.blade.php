@@ -1,19 +1,27 @@
 <div
   x-data="{ lastComment: false }"
-  class="comment-container relative bg-white flex rounded-lg shadow mt-4 border border-transparent transition ease-in duration-500">
+  class="comment-container @if($comment->is_status_update) is-status-update {{ 'status-' . $comment->status->slug }} @endif relative bg-white flex rounded-lg shadow mt-4 border border-transparent transition ease-in duration-500">
   <div class="flex flex-1 px-4 py-6">
     <div class="flex-shrink-0">
       <a href="#">
         <img src="{{ $comment->user->getAvator() }}" alt="" class="w-14 h-14 rounded-md">
+        @if ($comment->user->hasRole('admin'))
+        <span class="text-v-blue font-bold uppercase text-xxs text-center block mt-1">Admin</span>
+        @endif
       </a>
     </div>
     <div class="ml-4 flex-1">
+      @if ($comment->is_status_update)
+      <h4 class="text-xl font-semibold">
+        Status Changed to "{{ $comment->status->name }}"
+      </h4>
+      @endif
       <div class="text-gray-600 mt-3">
         {{ $comment->body }}
       </div>
       <div class="flex items-center justify-between mt-6">
         <div class="flex items-center text-xs font-semibold space-x-2 text-gray-400">
-          <div class="font-bold text-gray-900">{{ $comment->user->name }}</div>
+          <div class="font-bold {{$comment->is_status_update ? 'text-v-blue' : 'text-gray-900'}}">{{ $comment->user->name }}</div>
           <div>&bull;</div>
           @if ($comment->user_id === $comment->idea->user_id)
             <abbr

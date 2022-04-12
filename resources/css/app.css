@@ -6,14 +6,6 @@
   display: none !important;
 }
 
-/* .idea-container:last-of-type {
-  @apply mb-22 !important;
-} */
-
-/* .comment-container:last-of-type {
-  @apply mb-22 !important;
-} */
-
 /* Vertical line to the left of the comments */
 .comments-container::before {
   content: "";
@@ -54,7 +46,7 @@
   background: theme("colors.gray-background");
 }
 
-.is-admin {
+.is-status-update {
   border-width: 1px;
   border-image-source: linear-gradient(266deg, #21c8f6 98%, #637bff -52%);
   border-image-slice: 1;
@@ -65,7 +57,7 @@
   border-color: transparent;
 }
 
-.is-admin::after {
+.is-status-update > div::after {
   content: "";
   position: absolute;
   top: 50%;
@@ -76,27 +68,30 @@
   border-radius: 38px;
   border: 7px solid white;
   box-shadow: 4px 4px 15px 0 rgb(36 37 38 / 8%);
-  background: theme("colors.v-purple");
-  opacity: 1;
+  z-index: 1;
 }
 
 .open {
   @apply bg-gray-200;
 }
 
-.considering {
+.status-open > div::after {
+  @apply bg-gray-300;
+}
+
+.considering, .status-considering > div::after {
   @apply bg-v-purple text-white;
 }
 
-.in-progress {
+.in-progress, .status-in-progress > div::after {
   @apply bg-v-yellow text-white;
 }
 
-.implemented {
+.implemented, .status-implemented > div::after {
   @apply bg-v-green text-white;
 }
 
-.closed {
+.closed, .status-closed > div::after {
   @apply bg-v-red text-white;
 }
 
