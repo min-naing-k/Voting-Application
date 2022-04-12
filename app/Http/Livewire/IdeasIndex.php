@@ -70,8 +70,13 @@ class IdeasIndex extends Component
         ->when($this->filter === 'my-ideas', function ($query) {
           $query->where('user_id', auth()->id());
         })
-        ->when($this->filter === 'spam-reports' && auth()->user()->hasRole('admin'), function($query) {
+        ->when($this->filter === 'spam-ideas' && auth()->check() && auth()->user()->hasRole('admin'), function($query) {
           $query->where('spam_reports', '>', '0');
+        })
+        ->when($this->filter === 'spam-comments' && auth()->check() && auth()->user()->hasRole('admin'), function($query) {
+          $query->whereHas('comments', function($query) {
+            $query->where('spam_reports', '>', 0);
+          });
         })
         ->when($this->search && strlen($this->search) >= 3, function ($query) {
           $query->where(function ($query) {

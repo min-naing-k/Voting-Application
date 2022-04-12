@@ -56,11 +56,11 @@
                 @can('delete', $comment)
                   <button
                     @click.prevent="
-                              if(!document.querySelector('.comment-container:first-child').nextElementSibling) {
-                                lastComment = true;
-                              }
-                              Livewire.emit('deleteSetComment', { lastComment: lastComment, commentId: {{ $comment->id }} });
-                            "
+                      if(!document.querySelector('.comment-container:first-child').nextElementSibling) {
+                        lastComment = true;
+                      }
+                      Livewire.emit('deleteSetComment', { lastComment: lastComment, commentId: {{ $comment->id }} });
+                    "
                     type="button"
                     class="hover:bg-gray-100 px-5 py-3 block w-full text-left font-semibold transition duration-150 ease-in">
                     Delete a comment
@@ -68,8 +68,8 @@
                 @endcan
                 <button
                   @click.prevent="
-                        Livewire.emit('setCommentAsSpam', {{ $comment->id }});
-                      "
+                    Livewire.emit('setCommentAsSpam', {{ $comment->id }});
+                  "
                   type="button"
                   class="hover:bg-gray-100 px-5 py-3 block w-full text-left font-semibold transition duration-150 ease-in">
                   Report

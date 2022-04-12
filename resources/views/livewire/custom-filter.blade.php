@@ -15,7 +15,8 @@
       <option value="top-voted">Top Voted</option>
       <option value="my-ideas">My Ideas</option>
       @admin
-      <option value="spam-reports">Spam Reports</option>
+      <option value="spam-ideas">Spam Ideas</option>
+      <option value="spam-comments">Spam Comments</option>
       @endadmin
     </select>
   </div>
