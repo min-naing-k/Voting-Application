@@ -6,7 +6,12 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="csrf-token" content="{{ csrf_token() }}">
 
-  <title>{{ config('app.name', 'Laravel') }}</title>
+  <title>{{ $title ?? 'Voting App' }}</title>
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+  <link rel="manifest" href="/site.webmanifest">
 
   <!-- Fonts -->
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600;700&display=swap">
@@ -28,25 +33,11 @@
       </a>
       <div class="flex items-center">
         @if (Route::has('login'))
-          <div class="px-6 py-4">
+          <div class="flex items-center space-x-4 px-6 py-4">
+            <livewire:auth />
+
             @auth
-              <div class="flex items-center space-x-4">
-                <form method="POST" action="{{ route('logout') }}">
-                  @csrf
-                  <a href="{{ route('logout') }}"
-                    onclick="event.preventDefault();this.closest('form').submit();">
-                    {{ __('Log Out') }}
-                  </a>
-                </form>
-                
-                <livewire:comment-notifications />
-              </div>
-            @else
-              <a href="{{ route('login') }}" class="text-sm text-gray-700 dark:text-gray-500 underline">Log in</a>
-              @if (Route::has('register'))
-                <a href="{{ route('register') }}" class="ml-4 text-sm text-gray-700 dark:text-gray-500 
-                underline">Register</a>
-              @endif
+              <livewire:comment-notifications />
             @endauth
           </div>
         @endif
@@ -77,15 +68,8 @@
             @endauth
           </p>
         </div>
-        @auth
-          <livewire:create-idea />
-        @else
-          <div class="my-6 px-4 flex gap-3">
-            <x-button-link href="{{ route('login') }}" class="bg-v-blue text-white w-1/2 h-11 hover:bg-v-blue-hover">Login</x-button-link>
 
-            <x-button-link href="{{ route('register') }}" class="bg-gray-100 w-1/2 h-11 hover:border-gray-300">Sign up</x-button-link>
-          </div>
-        @endauth
+        <livewire:create-idea />
       </div>
     </div>
     <div class="w-full md:w-175">
@@ -101,31 +85,28 @@
     <x-notification
       :redirect="true"
       type="success"
-      messageToShow="{{ session('success') }}"
-    />
+      messageToShow="{{ session('success') }}" />
   @endif
 
   @if (session('error'))
     <x-notification
       :redirect="true"
       type="error"
-      messageToShow="{{ session('error') }}"
-    />
+      messageToShow="{{ session('error') }}" />
   @endif
 
   @if (session('warning'))
     <x-notification
       :redirect="true"
       type="warning"
-      messageToShow="{{ session('warning') }}"
-    />
+      messageToShow="{{ session('warning') }}" />
   @endif
 
   @stack('modals')
 
-  
+
   @livewireScripts
-  
+
   @stack('script')
 </body>
 

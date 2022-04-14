@@ -21,6 +21,13 @@ class SetStatus extends Component
   public function setStatus()
   {
     $this->idea->status_id = $this->status;
+
+    if($this->idea->status_id === (int) $this->status) {
+      $this->emit('notify', ['message' => 'Status is same!', 'type' => 'warning']);
+
+      return;
+    }
+
     $this->idea->update();
 
     Comment::create([

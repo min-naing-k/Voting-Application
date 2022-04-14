@@ -10,7 +10,7 @@ class IdeasIndex extends Component
 {
   use WithPagination;
 
-  public $status, $category, $filter, $search;
+  public $status, $category, $filter, $search, $showTotal = false;
 
   protected $queryString = [
     'status',
@@ -26,6 +26,11 @@ class IdeasIndex extends Component
     'queryStringUpdatedSearch',
   ];
 
+  public function mount()
+  {
+    $this->toggleShowTotal();
+  }
+
   public function queryStringUpdatedStatus($new_status)
   {
     $this->resetPage();
@@ -36,18 +41,34 @@ class IdeasIndex extends Component
   {
     $this->resetPage();
     $this->category = $new_category;
+    $this->toggleShowTotal();
   }
 
   public function queryStringUpdatedFilter($new_filter)
   {
     $this->resetPage();
     $this->filter = $new_filter;
+    $this->toggleShowTotal();
   }
 
   public function queryStringUpdatedSearch($new_search)
   {
     $this->resetPage();
     $this->search = $new_search;
+    $this->toggleShowTotal();
+  }
+
+  public function paginationView() {
+    return 'vendor.livewire.idea-pagination';
+  }
+
+  protected function toggleShowTotal() {
+    if($this->category || $this->filter || $this->search) {
+      $this->showTotal = true;
+      return;
+    }
+
+    $this->showTotal = false;
   }
 
   public function render()
@@ -94,7 +115,7 @@ class IdeasIndex extends Component
           'comments'
         ])
         ->orderBy('id', 'desc')
-        ->simplePaginate()
+        ->paginate()
         ->withQueryString(),
     ]);
   }
