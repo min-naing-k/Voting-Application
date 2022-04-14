@@ -100,7 +100,24 @@
   @if (session('success'))
     <x-notification
       :redirect="true"
+      type="success"
       messageToShow="{{ session('success') }}"
+    />
+  @endif
+
+  @if (session('error'))
+    <x-notification
+      :redirect="true"
+      type="error"
+      messageToShow="{{ session('error') }}"
+    />
+  @endif
+
+  @if (session('warning'))
+    <x-notification
+      :redirect="true"
+      type="warning"
+      messageToShow="{{ session('warning') }}"
     />
   @endif
 

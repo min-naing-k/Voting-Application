@@ -22,11 +22,17 @@
   <x-slot name="content">
     <div>
       @if ($notifications->isNotEmpty() && !$loader)
+        <button
+          wire:click.prevent="markAllRead"
+          class="mb-2 text-sm hover:underline bg-white shadow px-4 py-2 rounded-sm">
+          Mark all read
+        </button>
         @foreach ($notifications as $notification)
           <div class="flex justify-between space-x-4 p-4 rounded-md hover:bg-gray-100">
-            <a href="{{ route('idea.show', $notification->data['idea_slug']) }}" class="flex items-center space-x-4 flex-1">
+            <button wire:click.prevent="markAsRead('{{ $notification->id }}')"
+              class="flex items-start space-x-4 flex-1">
               <img src="{{ $notification->data['user_avator'] }}" class="w-10 h-10 rounded-md" alt="user">
-              <div>
+              <div class="text-left">
                 <span class="font-semibold">{{ $notification->data['user_name'] }}</span> <span class="text-gray-400">commented on</span>
                 <span class="font-semibold">{{ $notification->data['idea_title'] }}</span>:
                 <p class="line-clamp-3 text-sm text-gray-500">
@@ -36,7 +42,7 @@
                   {{ $notification->created_at->diffForHumans() }}
                 </span>
               </div>
-            </a>
+            </button>
             <div>
               <button class="text-gray-400">
                 <svg class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">

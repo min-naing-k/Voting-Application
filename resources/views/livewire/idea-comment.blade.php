@@ -1,5 +1,6 @@
 <div
   x-data="{ lastComment: false }"
+  id="comment-{{ $comment->id }}"
   class="comment-container @if($comment->is_status_update) is-status-update {{ 'status-' . $comment->status->slug }} @endif relative bg-white flex rounded-lg shadow mt-4 border border-transparent transition ease-in duration-500">
   <div class="flex flex-1 px-4 py-6">
     <div class="flex-shrink-0">

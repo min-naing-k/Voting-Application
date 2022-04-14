@@ -1,13 +1,14 @@
 @props([
   'redirect' => false,
   'messageToShow' => '',
+  'type' => 'success'
 ])
 
 <div
   x-data="{
     open: false,
     messageToShow: '',
-    type: 'success',
+    type: '{{ $type }}',
     showNotification(message) {
       this.open = true;
       this.messageToShow = message;

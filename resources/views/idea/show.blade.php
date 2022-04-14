@@ -56,7 +56,7 @@
 
   @push('modals')
     <x-idea-modals :idea="$idea" />
-    
+
     <livewire:edit-comment />
 
     <livewire:delete-comment />
@@ -70,6 +70,7 @@
 
   @push('script')
     <script>
+      // scroll to top when click one of pagination links
       Livewire.hook('message.processed', function(message, component) {
         if (['gotoPage', 'nextPage', 'previousPage'].includes(message.updateQueue[0].method)) {
           const button_container = document.querySelector('.buttons-container');
@@ -79,16 +80,27 @@
         }
       });
 
+      // scroll to comment when created
       window.addEventListener('comment-was-created', function(event) {
-        last_comment = document.querySelector('.comment-container:last-child');
-        last_comment.scrollIntoView({
+        const last_comment = document.querySelector('.comment-container:last-child');
+        scrollTo(last_comment);
+      });
+
+      // scroll to comment when user click notification link
+      @if (session('scrollToComment'))
+        const comment = document.querySelector('#comment-{{ session('scrollToComment') }}');
+        scrollTo(comment);
+      @endif
+
+      function scrollTo(element) {
+        element.scrollIntoView({
           behavior: 'smooth'
         });
-        last_comment.classList.add('!border-green-300');
+        element.classList.add('!border-green-300');
         setTimeout(() => {
-          last_comment.classList.remove('!border-green-300');
+          element.classList.remove('!border-green-300');
         }, 5000);
-      });
+      }
 
       // Livewire.hook('message.processed', function(message, component) {
       //   if (message.updateQueue[0].payload.event === 'commentWasCreated' && message.component.fingerprint.name === 'idea-comments') {
