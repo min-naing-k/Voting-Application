@@ -5,6 +5,7 @@
   contentClasses="overflow-y-auto -right-11 sm:right-0">
   <x-slot name="trigger">
     <button
+      wire:poll="getNotificationCount"
       wire:click.prevent="getNotifications"
       class="relative">
       <svg class="h-6 w-6 text-gray-400" viewBox="0 0 20 20" fill="currentColor">
