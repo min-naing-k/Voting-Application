@@ -1,6 +1,6 @@
 <form wire:submit.prevent="createIdea" action="#" method="POST" class="space-y-4 px-4 py-6">
   <div>
-    <input wire:model="title" type="text" class="text-sm w-full border border-gray-200 bg-gray-100 rounded-md placeholder:text-gray-900 px-4 py-2 focus:border-blue transition duration-100 ease-in"
+    <input wire:model.defer="title" type="text" class="text-sm w-full border border-gray-200 bg-gray-100 rounded-md placeholder:text-gray-900 px-4 py-2 focus:border-blue transition duration-100 ease-in"
       placeholder="Your Idea" />
     @error('title')
       <p class="mt-1 text-red-500 text-xs">{{ $message }}</p>
@@ -21,7 +21,7 @@
   </div>
 
   <div>
-    <textarea wire:model="description" name="description" id="description" cols="30" rows="4"
+    <textarea wire:model.defer="description" name="description" id="description" cols="30" rows="4"
       class="text-sm w-full border border-gray-200 bg-gray-100 rounded-md placeholder:text-gray-900 px-4 py-2 focus:border-blue transition duration-100 ease-in"
       placeholder="Descripe your idea..."></textarea>
     @error('description')
