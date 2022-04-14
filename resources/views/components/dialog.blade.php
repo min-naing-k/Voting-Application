@@ -1,6 +1,7 @@
 @props([
   'align' => '',
   'width' => '48',
+  'height' => '',
   'contentClasses' => '',
   'alignmentClasses' => '',
   'class' => ''
@@ -36,7 +37,7 @@ switch ($width) {
     });
   "
   @click.outside="open = false" @close.stop="open = false">
-  <div @click="open = ! open; $wire.resetErrorAndData()">
+  <div @click="open = ! open; if($refs.form) {$wire.resetErrorAndData()}">
     {{ $trigger }}
   </div>
 
@@ -55,7 +56,7 @@ switch ($width) {
     x-transition:leave="transition ease-in duration-150"
     x-transition:leave-start="transform opacity-100 scale-100"
     x-transition:leave-end="transform opacity-0 scale-50"
-    class="absolute z-50 mt-2 {{ $width }} text-left font-semibold text-sm bg-white shadow-dialog rounded-lg px-4 py-6 {{ $alignmentClasses }} {{ $contentClasses }}"
+    class="absolute z-50 mt-2 {{ $width }} {{ $height }} text-left font-semibold text-sm bg-white shadow-dialog rounded-lg px-4 py-6 {{ $alignmentClasses }} {{ $contentClasses }}"
     style="display: none;"
     @keydown.escape.window="open = false; $wire.resetErrorAndData()">
     {{ $content }}

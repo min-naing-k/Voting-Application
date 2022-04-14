@@ -11,7 +11,7 @@
   </x-slot>
   <x-slot name="content">
     @auth
-      <form wire:submit.prevent="createComment" action="#" method="POST" class="space-y-4">
+      <form wire:submit.prevent="createComment" x-ref="form" action="#" method="POST" class="space-y-4">
         <div>
           <textarea wire:model.defer="body" x-ref="comment" name="post_comment" id="post_comment" cols="30" rows="4"
             class="w-full text-sm bg-gray-100 rounded-md placeholder:text-gray-400 

@@ -14,7 +14,7 @@
     </button>
   </x-slot>
   <x-slot name="content">
-    <form wire:submit.prevent="setStatus" action="#" method="POST" class="space-y-4">
+    <form wire:submit.prevent="setStatus" x-ref="form" action="#" method="POST" class="space-y-4">
       <div class="space-y-2">
         @foreach ($statuses as $status)
           <div>

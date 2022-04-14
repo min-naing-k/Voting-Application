@@ -30,13 +30,17 @@
         @if (Route::has('login'))
           <div class="px-6 py-4">
             @auth
-              <form method="POST" action="{{ route('logout') }}">
-                @csrf
-                <a href="{{ route('logout') }}"
-                  onclick="event.preventDefault();this.closest('form').submit();">
-                  {{ __('Log Out') }}
-                </a>
-              </form>
+              <div class="flex items-center space-x-4">
+                <form method="POST" action="{{ route('logout') }}">
+                  @csrf
+                  <a href="{{ route('logout') }}"
+                    onclick="event.preventDefault();this.closest('form').submit();">
+                    {{ __('Log Out') }}
+                  </a>
+                </form>
+                
+                <livewire:comment-notifications />
+              </div>
             @else
               <a href="{{ route('login') }}" class="text-sm text-gray-700 dark:text-gray-500 underline">Log in</a>
               @if (Route::has('register'))

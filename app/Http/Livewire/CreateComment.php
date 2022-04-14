@@ -4,6 +4,7 @@ namespace App\Http\Livewire;
 
 use App\Models\Comment;
 use App\Models\Idea;
+use App\Notifications\CommentCreated;
 use Illuminate\Http\Response;
 use Livewire\Component;
 
@@ -31,8 +32,9 @@ class CreateComment extends Component
     $attributes['idea_id'] = $this->idea->id;
     $attributes['status_id'] = $this->idea->status_id;
     
-    Comment::create($attributes);
+    $newComment = Comment::create($attributes);
     $this->body = null;
+    $this->idea->user->notify(new CommentCreated($newComment));
 
     $this->emit('gotoNewComment');
     $this->emit('notify', ['message' => 'Comment was created successfully', 'type' => 'success']);
