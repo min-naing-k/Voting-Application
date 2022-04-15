@@ -13,7 +13,13 @@
       class="w-full rounded-md shadow transition duration-150 ease-in border border-transparent foucs:border-blue">
       <option value="">No Filter</option>
       <option value="top-voted">Top Voted</option>
-      <option value="my-ideas">My Ideas</option>
+      <option value="popular-this-week">Popular this week</option>
+      <option value="most-commented">Most Commented</option>
+      <option value="no-comment-yet">No Commented yet</option>
+      @auth
+        <option value="my-ideas">My Ideas</option>
+        <option value="my-participation">My Participation</option>
+      @endauth
       @admin
       <option value="spam-ideas">Spam Ideas</option>
       <option value="spam-comments">Spam Comments</option>

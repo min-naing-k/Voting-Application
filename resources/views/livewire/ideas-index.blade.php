@@ -1,11 +1,9 @@
 <div>
   <livewire:custom-filter />
 
-  <div class="flex items-center">
-    @if ($showTotal)
-      <div class="ml-1.5 mt-4 text-gray-500">Filter Total Result: <span class="text-gray-500 font-semibold">{{ $ideas->total() }}</span></div>
-    @endif
-  </div>
+  @if ($showTotal)
+    <div class="ml-1.5 mt-4 text-gray-500">Filter Total Result: <span class="text-gray-500 font-semibold">{{ $ideas->total() }}</span></div>
+  @endif
 
   <div class="ideas-container space-y-6 my-6">
     @forelse ($ideas as $idea)

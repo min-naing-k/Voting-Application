@@ -33,7 +33,7 @@ class CommentNotifications extends Component
   {
     $this->notificationCount = auth()->user()->unreadNotifications()->count();
     if ($this->notificationCount > self::NOTIFICATION_THRESHOLD) {
-      $this->notificationCount = '9+';
+      $this->notificationCount = self::NOTIFICATION_THRESHOLD . '+';
     } else {
       $this->notificationCount = $this->notificationCount;
     }

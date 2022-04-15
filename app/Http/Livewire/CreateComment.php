@@ -37,7 +37,10 @@ class CreateComment extends Component
     
     $newComment = Comment::create($attributes);
     $this->body = null;
-    $this->idea->user->notify(new CommentCreated($newComment));
+    
+    if($this->idea->user_id !== auth()->id()) {
+      $this->idea->user->notify(new CommentCreated($newComment));
+    }
 
     $this->emit('gotoNewComment');
     $this->emit('notify', ['message' => 'Comment was created successfully', 'type' => 'success']);

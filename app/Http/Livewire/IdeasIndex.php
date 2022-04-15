@@ -88,6 +88,23 @@ class IdeasIndex extends Component
         ->when($this->filter === 'top-voted', function ($query) {
           $query->orderByDesc('votes_count');
         })
+        ->when($this->filter === 'popular-this-week', function ($query) {
+          $query->whereBetween('created_at', [
+            now()->subDays(6)->startOfDay(),
+            now()
+          ])
+          ->orderByDesc('comments_count');
+        })
+        ->when($this->filter === 'my-participation', function($query) {
+          $query->having('commented_by_user', '>', 0)
+          ->orHaving('voted_by_user', '>', 0);
+        })
+        ->when($this->filter === 'most-commented', function ($query) {
+          $query->orderByDesc('comments_count');
+        })
+        ->when($this->filter === 'no-comment-yet', function($query) {
+          $query->having('comments_count', 0);
+        })
         ->when($this->filter === 'my-ideas', function ($query) {
           $query->where('user_id', auth()->id());
         })
@@ -112,7 +129,10 @@ class IdeasIndex extends Component
           'votes as voted_by_user' => function ($query) {
             $query->where('user_id', auth()->id());
           },
-          'comments'
+          'comments',
+          'comments as commented_by_user' => function($query) {
+            $query->where('user_id', auth()->id());
+          }
         ])
         ->orderBy('id', 'desc')
         ->paginate()
