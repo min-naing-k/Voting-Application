@@ -36,11 +36,6 @@ class IdeaIndex extends Component
     }
   }
 
-  public function like()
-  {
-    $this->idea->like(auth()->user());
-  }
-
   public function render()
   {
     return view('livewire.idea-index');
