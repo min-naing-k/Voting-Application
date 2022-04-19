@@ -36,6 +36,11 @@ class IdeaIndex extends Component
     }
   }
 
+  public function like()
+  {
+    dd('hi');
+  }
+
   public function render()
   {
     return view('livewire.idea-index');

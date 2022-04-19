@@ -58,6 +58,15 @@ class Idea extends Model
     return $this->belongsToMany(User::class, 'idea_spam', 'idea_id', 'user_id');
   }
 
+  public function likes() {
+    return $this->morphToMany(User::class, 'likeable')->withTimestamps();
+  }
+
+  public function like(User $user)
+  {
+    $this->likes()->attach($user);
+  }
+
   public function isMarkAsSpamByUser(User $user)
   {
     return IdeaSpam::where('idea_id', $this->id)

@@ -23,14 +23,25 @@ class Comment extends Model
     return $this->belongsTo(Idea::class);
   }
 
-  public function status() {
+  public function status()
+  {
     return $this->belongsTo(Status::class);
   }
-  
+
   public function reports()
   {
     return $this->belongsToMany(User::class, 'comment_spam', 'comment_id', 'user_id')
       ->withTimestamps();
+  }
+
+  public function likes()
+  {
+    return $this->morphToMany(User::class, 'likeables')->withTimestamps();
+  }
+
+  public function like(User $user)
+  {
+    $this->likes()->attach($user);
   }
 
   public function isMarkAsSpamByUser(User $user)
