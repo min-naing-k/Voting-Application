@@ -23,7 +23,7 @@ class IdeasIndex extends Component
     'queryStringUpdatedStatus',
     'queryStringUpdatedCategory',
     'queryStringUpdatedFilter',
-    'queryStringUpdatedSearch',
+    'queryStringUpdatedSearch'
   ];
 
   public function mount()

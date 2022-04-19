@@ -38,7 +38,7 @@ class IdeaIndex extends Component
 
   public function like()
   {
-    dd('hi');
+    $this->idea->like(auth()->user());
   }
 
   public function render()
