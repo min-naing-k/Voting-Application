@@ -11,12 +11,13 @@ class IdeaIndex extends Component
   use WithAuthRedirects;
 
   public Idea $idea;
-  public $votesCount, $hasVoted;
+  public $votesCount, $hasVoted, $isLiked;
 
   public function mount($votesCount)
   {
     $this->votesCount = $votesCount;
     $this->hasVoted = $this->idea->voted_by_user;
+    $this->isLiked = $this->idea->liked_by_user;
   }
 
   public function vote()
@@ -33,6 +34,18 @@ class IdeaIndex extends Component
     }else {
       $this->votesCount++;
       $this->hasVoted = true;
+    }
+  }
+
+  
+  public function toggleLike()
+  {
+    $this->idea->likes()->toggle(auth()->user());
+    
+    if($this->isLiked) {
+      $this->isLiked = true;
+    }else {
+      $this->isLiked = false;
     }
   }
 

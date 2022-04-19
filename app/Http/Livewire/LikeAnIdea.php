@@ -7,16 +7,23 @@ use Livewire\Component;
 
 class LikeAnIdea extends Component
 {
-  public $idea;
+  public $idea, $isLike;
 
   public function mount(Idea $idea)
   {
     $this->idea = $idea;
+    $this->isLike = $idea->liked_by_user;
   }
 
-  public function like()
+  public function toggleLike()
   {
-    $this->idea->like(auth()->user());
+    if($this->isLike) {
+      $this->isLike = true;
+    }else {
+      $this->isLike = false;
+    }
+
+    $this->idea->likes()->toggle(auth()->user());
   }
 
   public function render()

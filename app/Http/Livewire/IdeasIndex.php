@@ -132,6 +132,9 @@ class IdeasIndex extends Component
           'comments',
           'comments as commented_by_user' => function($query) {
             $query->where('user_id', auth()->id());
+          },
+          'likes as liked_by_user' => function($query) {
+            $query->where('user_id', auth()->id());
           }
         ])
         ->orderBy('id', 'desc')
